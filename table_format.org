@@ -1,0 +1,12 @@
+#+LATEX_CLASS: varticle
+#+LATEX_CLASS_OPTIONS: [11pt,twoside,openany,strict,extrafontsizes,article]
+#+MACRO: NEWLINE @@latex:\linebreak@@ @@html:<br>@@
+#+MACRO: PARSPC @@latex:\\[0.5\baselineskip]@@ @@html:<br>@@
+#+LATEX_HEADER: \usepackage{booktabs,threeparttable,longtable}
+#+LATEX_HEADER: \usepackage[add-decimal-zero = true,add-integer-zero = true,round-integer-to-decimal,round-mode = places,round-precision=1,group-separator={,}]{siunitx}
+#+LATEX_HEADER: \newcolumntype{C}{>{\centering\arraybackslash}X}
+#+LATEX_HEADER: \newcommand{\mcx}[2]{\multicolumn{#1}{>{\hsize=\dimexpr #1\hsize +\numexpr2*#1-2\relax\tabcolsep \relax}C}{#2}}
+#+LATEX_HEADER: \newcommand{\mcone}[1]{\multicolumn{1}{C}{#1}}
+#+MACRO: MCONE @@latex:\mcone{$1}@@
+#+macro: getcell src_emacs-lisp[:results value raw]{(org-table-get-remote-range "$1" "$2")}
+#+macro: roundnum src_emacs-lisp[:results value raw]{(round (string-to-number (org-table-get-remote-range "$1" "$2")))}
