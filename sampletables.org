@@ -1,0 +1,94 @@
+#+NAME: sample-problems
+#+CAPTION: Comparison of NSSO-SLLH estimates of total operated area and number of rural households with data from land use statistics and population censuses, India
+#+ATTR_LATEX: :float t :placement [htb]
+#+begin_table*
+#+begin_threeparttable
+#+ATTR_LATEX: :environment tabularx :width \textwidth
+#+ATTR_LATEX: :align @{}l*{5}{S[table-format=3.1,round-precision=1,tight-spacing=true]}@{}
+#+ATTR_LATEX: :center :booktabs t
+|     Year of |                      <2colc>Number of rural |                                                   |                  <2colc>Total operated area |                                                       |                            {{{MCONE(Net sown area)}}} |
+| NSSO survey |                <2colc>households (millions) |                                                   |                   <2colc>(million hectares) |                                                       |                          {{{MC((million hectares))}}} |
+|     <2cid3> |                                     <4cid5> |                                                   |                                             |                                                       |                                                       |
+|     <6cid6> |                                             |                                                   |                                             |                                                       |                                                       |
+|             | {{{MCONE((NSSO-SLLH)\textsuperscript{1})}}} | {{{MCONE((Census of India)\textsuperscript{2})}}} | {{{MCONE((NSSO-SLLH)\textsuperscript{1})}}} | {{{MCONE((Agricultural Census)\textsuperscript{3})}}} | {{{MCONE((Land use statistics)\textsuperscript{4})}}} |
+|-------------+---------------------------------------------+---------------------------------------------------+---------------------------------------------+-------------------------------------------------------+-------------------------------------------------------|
+|    1971--72 |                                  100.612300 |                                        100.194100 |                                  130.094400 |                                            162.100000 |                                            139.721000 |
+|    1981--82 |                                   93.855000 |                                         93.822000 |                                  116.463000 |                                            163.800000 |                                            139.414300 |
+|    1991--92 |                                  115.903100 |                                        111.591326 |                                  124.593100 |                                            165.500000 |                                            140.897600 |
+|    2002--03 |                                  147.838000 |                                        138.271559 |                                  107.648000 |                                            159.400000 |                                            140.734000 |
+|    2012--13 |                                  156.144200 |                                        168.565486 |                                   92.368578 |                                            159.200000 |                                            140.980000 |
+#+attr_latex: :options [flushleft]
+#+begin_tablenotes
+#+begin_footnotesize
++ Notes: :: \mbox{}
+     + Data on number of households from the population censuses are for 1971, 1981, 1991, 2001 and 2011.
+     + Population census was not conducted in Assam in 1981 and in Jammu and Kashmir in 1991. For the sake of comparability across sources, data for Assam were excluded from all the estimates for 1981--82, and data for  Jammu and Kashmir were excluded from all the estimates for 1991--92.
+     + Agricultural Census data are for 1970--71, 1980--81, 1990--91, 2000--01 and 2010--11.
++ Sources: :: \mbox{}
+     1. \citet{nssreport_331,nssreport_330} for 1971--72 and 1981--82; computed using unit-level data for 1991--92, 2002--03 and 2012--13.
+     2. Primary Census Abstracts of different Censuses.
+     3. Various volumes of Agricultural Censuses.
+     4. Various volumes of Agricultural Statistics at a Glance.
+#+end_footnotesize
+#+end_tablenotes
+#+end_threeparttable
+#+end_table*
+
+
+
+#+NAME: ind1_tenant_2_hhd
+#+CAPTION: Tenants as a proportion of all rural and cultivator households, leased-in land as a proportion of total operated area, India, 1971--72, 1982, 1991--92, 2002--03 and 2012--13 (per cent)
+#+ATTR_LATEX: :float t :placement [htb]
+#+begin_table*
+#+begin_threeparttable
+#+ATTR_LATEX: :environment tabularx :width 0.9\textwidth
+#+ATTR_LATEX: :align @{}lS[table-format=2.0,round-mode=off]*{3}{S[table-format=2.1]}@{}
+#+ATTR_LATEX: :center :booktabs t
+#+RESULTS: ind1_tenant_2_hhd_code
+|     Year | {{{MCONE(NSS Round)}}} | {{{mcone(Tenants/ Rural households)}}} | {{{mcone(Tenants/ Cultivator households)}}} | {{{mcone(Leased-in area/ Operated area)}}} |
+|----------+------------------------+----------------------------------------+---------------------------------------------+--------------------------------------------|
+| 1971--72 |                     26 |                                  25.29 |                                         nil |                                      10.57 |
+|     1982 |                     37 |                                  17.78 |                                       24.04 |                                       7.18 |
+| 1991--92 |                     48 |                                    9.3 |                                        12.8 |                                        8.7 |
+| 2002--03 |                     59 |                                      8 |                                        11.4 |                                        6.7 |
+| 2012--13 |                     70 |                                   10.3 |                                          15 |                                       11.1 |
+#+attr_latex: :options [flushleft]
+#+begin_tablenotes
+#+begin_footnotesize
+\begin{Spacing}{0.8}
+\setlength\labelsep{0pt}
+\item[] \textit{Source}: Estimates for 1971--72 and 1982 taken from \citet{nssreport_331,nssreport_330}; estimates for 1991--92, 2002--03 and 2012--13 computed using the corrected unit-level data for each round.
+\end{Spacing}
+#+end_footnotesize
+#+end_tablenotes
+#+end_threeparttable
+#+end_table*
+
+
+#+NAME: ownquintile_averagearea_states
+#+CAPTION: Average area of land leased-in by tenant households, by quintiles of household ownership holding, by State, 2012--13 (acres)
+#+ATTR_LATEX: :environment tabularx :width \textwidth :booktabs t :center
+#+ATTR_LATEX: :align @{}l*{6}{S[table-format=1.3,round-precision=3]}@{}
+#+ATTR_LATEX: :float t :placement [htb]
+| State            | {{{MCONE(Landless)}}} | {{{MCONE(Q2)}}}   |   {{{MCONE(Q3)}}} |   {{{MCONE(Q4)}}} |   {{{MCONE(Q5)}}} | {{{MCONE(All households)}}} |
+|------------------+-----------------------+-------------------+-------------------+-------------------+-------------------+-----------------------------|
+| Himachal Pradesh |     0.721178768756065 | 0.211979068992236 |               nil |               nil |  1.66267176702834 |           0.470446336094127 |
+| Punjab           |                   nil | nil               |  6.42104142664418 |  3.71718878806743 |  5.44716655095666 |            4.29670852638327 |
+| Haryana          |                   nil | nil               |  5.62394783123233 |  5.07201584329243 |  2.84803257419635 |            4.59403270286523 |
+| Uttarakhand      |                   nil | nil               |               nil |               nil |               nil |            0.77272355873435 |
+| Uttar Pradesh    |     0.714666360572202 | 0.665371482092989 |  1.12536586166784 |  1.23713776501312 |  2.13617646479526 |            1.02266370520424 |
+| Rajasthan        |      1.26256164745465 | 1.6201195254261   |  3.26739208788827 |  7.87728383606433 |  4.74555291493629 |            2.96510908167386 |
+| Madhya Pradesh   |      2.49145565402769 | 1.93106947382158  |  2.05634010995227 |   3.4076758955947 |  5.94969158667822 |            2.94165478430349 |
+| Gujarat          |      2.01045458718896 | 2.79248321153339  |  1.13757671496559 |  4.02659098449479 |  3.47687816009612 |            2.56001011391147 |
+| Maharashtra      |      1.78086851725643 | nil               |  1.49893039610795 |  1.88174076022792 |  3.82136260088628 |            1.86870693301399 |
+| Karnataka        |                   nil | nil               |  1.80226045455969 |  2.56957974429136 |  4.06780306653149 |            2.61140739505906 |
+| Kerala           |     0.236638053533005 | nil               | 0.421820649493072 | 0.811831141799401 |  1.29012839194409 |           0.563541598490217 |
+| Tamil Nadu       |     0.956256730929144 | nil               |  0.61483339216969 |  1.86970274346019 |   2.8425103355195 |            1.53782131425888 |
+| Andhra Pradesh   |      2.38734305324036 | nil               |  2.85584894050004 |  2.11110346110657 |  3.44768259532059 |            2.44675015487716 |
+| Telangana        |      1.78923858316453 | nil               |  2.70229901436449 |  1.75174810617511 |  3.05593113982161 |            2.34606532973306 |
+| Chhattisgarh     |      2.06574471835112 | nil               |               nil |  2.34774388758974 |               nil |            1.99982472278989 |
+| Orissa           |     0.874345854343285 | 0.579172150871665 | 0.699327089035939 | 0.560498973223855 |  1.13777757468254 |           0.759208783352292 |
+| West Bengal      |     0.333849394553593 | nil               | 0.376683002134223 | 0.471209698113417 | 0.408912289032889 |           0.379982725557217 |
+| Assam            |     0.765019070790381 | 1.00666675733289  |  1.42315263002655 |  1.03810613226452 |  1.98368600666346 |            1.00108640905624 |
+| Bihar            |     0.710300880173048 | nil               | 0.921714488037063 | 0.799525652957983 |  1.23170057270231 |           0.886392523700088 |
+| Jharkhand        |                   nil | nil               |               nil |               nil |  1.05968752374641 |            0.32779771602086 |

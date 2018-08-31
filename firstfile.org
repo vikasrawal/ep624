@@ -1,0 +1,91 @@
+#+TITLE: My MPhil Dissertation
+#+AUTHOR: Vikas Rawal and Ankur Verma
+#+DATE: August 13, 2018
+#+OPTIONS: toc:nil H:3
+#+LATEX_HEADER: \usepackage{booktabs}
+#+LATEX_HEADER: \usepackage{tabulary}
+#+INCLUDE: table_format.org
+
+git clone https://github.com/vikasrawal/ep624
+
+
+
+su
+apt-get update
+apt-get  install libreoffice
+
+* Introduction
+
+* Review of literature
+
+This is my literature review.[fn:1] Table [[scores]] shows that the scores
+are very low.
+
+M-x menu-bar-mode
+
+To insert a footnote: C-c C-f f
+For other operations on footnotes: C-u C-c C-x f
+
+#+NAME: graphscore
+#+CAPTION: Histogram of scores of participants
+[[file:~/Documents/figure.png]]
+
+
+My *name* is Vikas Rawal and I /live/ in _New Delhi_ and work in JNU which
+is a  u This is a second para asj lakjs dkajs dk
+
+
+
+
+* Sources of data
+
+** 
+*** 
+C-x r x
+* Preliminary Analysis
+
+
+
+#+NAME: scores
+#+CAPTION: Scores for survey participants
+#+attr_latex: :environment tabulary :booktabs t
+#+attr_latex: :align l|LLRR  :width 0.8\textwidth
+| Column1 | <2colc>Scores of participants |      | <2colc>Labels |      |
+| <2cid3> |                       <4cid5> |      |               |      |
+|         |                       Column2 | Col3 | Col4          | col5 |
+|---------+-------------------------------+------+---------------+------|
+|         |                               |      | a             | t    |
+| Vikas   |                             5 |  2.1 | as            | rt   |
+| Ankur   |                             6 |  3.2 | as            | ser  |
+| Poonam  |                             5 | 2.65 | as            | e    |
+| Kriti   |                             4 |    2 | as            | rt   |
+| <mid>   |                               |      |               |      |
+| All     |                     4.6666667 |  3.2 | as            | as   |
+
+#+TBLFM: @5$2=@2$3+@3$2::@5$3=vmean(@2..@4)
+
+
+* Econometric model
+
+vm
+
++ This is a bullet
+  + alskjd
+  + alskjd
++ askljd
+
+a;ksd;aksd
+
+ 1. This is a numbered list
+    1. outlined ordered list
+    2. alosjd 
+    3. asljd
+ 2. aksjdh akshd akjshd
+ 3. laksdkasdkahsd
+
+
+
+* Footnotes
+
+[fn:1] My first footnote
+
