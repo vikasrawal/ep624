@@ -5,6 +5,7 @@
 #+LATEX_HEADER: \usepackage{booktabs}
 #+LATEX_HEADER: \usepackage{tabulary}
 #+INCLUDE: table_format.org
+#+PROPERTY: header-args:R :session nss59 :eval never-export
 
 git clone https://github.com/vikasrawal/ep624
 
@@ -36,6 +37,29 @@ is a  u This is a second para asj lakjs dkajs dk
 
 
 
+#+NAME: all_states_opr_hhd_code
+#+BEGIN_SRC R :results value :exports results :colnames no :hline yes
+
+
+
+#+END_SRC
+
+#+NAME: indgraph_code
+#+BEGIN_SRC R :results output graphics :exports results :file graph2.png :width 3774 :height 2600  :res 300
+  data.frame(a=c(1:5),b=c(1:5)^2)->t
+  plot(a~b,data=t)
+#+END_SRC
+
+#+NAME: indgraph
+#+CAPTION: Just a graph for fun
+#+attr_latex: :width 0.5\textwidth
+#+RESULTS: indgraph_code
+[[file:graph2.png]]
+
+#+BEGIN_SRC R 
+
+#+END_SRC
+
 
 * Sources of data
 
@@ -44,7 +68,26 @@ is a  u This is a second para asj lakjs dkajs dk
 C-x r x
 * Preliminary Analysis
 
+#+BEGIN_SRC R :results value silent :exports none
+ls()
+#+END_SRC
 
+#+NAME: analysis-code
+#+BEGIN_SRC R :results value :exports results :colnames yes :hline
+  data.frame(name=c("Poonam","Siddhant"),income=c("5000","8000"))->a
+  a
+#+END_SRC
+
+Table [[analysis]] shows that askhd akdkajhdn
+
+#+NAME: analysis
+#+CAPTION: Income of members
+#+ATTR_LATEX: :environment tabulary :align LR :width \textwidth
+#+RESULTS: analysis-code
+| name     | income |
+|----------+--------|
+| Poonam   |   5000 |
+| Siddhant |   8000 |
 
 #+NAME: scores
 #+CAPTION: Scores for survey participants
