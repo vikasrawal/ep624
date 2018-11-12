@@ -7,15 +7,15 @@
 #+INCLUDE: table_format.org
 #+PROPERTY: header-args:R :session nss59 :eval never-export
 
+* Using this repository
+
 git clone https://github.com/vikasrawal/ep624
+cd ep624
+git checkout -b yourname #to create your own branch
+git checkout master #to switch to the master branch
+git pull # To update
+git checkout yourname to switch to your branch
 
-
-
-su
-apt-get update
-apt-get  install libreoffice
-
-* Introduction
 
 * Review of literature
 
@@ -45,7 +45,7 @@ is a  u This is a second para asj lakjs dkajs dk
 #+END_SRC
 
 #+NAME: indgraph_code
-#+BEGIN_SRC R :results output graphics :exports results :file graph2.png :width 3774 :height 2600  :res 300
+#+BEGIN_SRC R :results output graphics :exports results :file graph3.png :width 3774 :height 2600  :res 300
   data.frame(a=c(1:5),b=c(1:5)^2)->t
   plot(a~b,data=t)
 #+END_SRC
@@ -54,9 +54,9 @@ is a  u This is a second para asj lakjs dkajs dk
 #+CAPTION: Just a graph for fun
 #+attr_latex: :width 0.5\textwidth
 #+RESULTS: indgraph_code
-[[file:graph2.png]]
+[[file:graph3.png]]
 
-#+BEGIN_SRC R 
+#+BEGIN_SRC R :results value :exports results
 
 #+END_SRC
 
@@ -71,6 +71,24 @@ C-x r x
 #+BEGIN_SRC R :results value silent :exports none
 ls()
 #+END_SRC
+
+#+NAME: vikas-code
+#+BEGIN_SRC R :results value  :exports results :colnames yes :hline
+  ls()
+  c(1:5)->a
+  a^2->b
+#+END_SRC
+
+#+NAME: vikas
+#+CAPTION: 
+#+RESULTS: vikas-code
+|  x |
+|----|
+|  1 |
+|  4 |
+|  9 |
+| 16 |
+| 25 |
 
 #+NAME: analysis-code
 #+BEGIN_SRC R :results value :exports results :colnames yes :hline
