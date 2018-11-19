@@ -1,0 +1,1507 @@
+#+STARTUP: hidestars overview align inlineimages indent hideblocks
+#+TITLE:
+#+AUTHOR:
+#+DATE:
+#+COLUMNS: %25ITEM %TAGS %PRIORITY%T
+#+OPTIONS: H:4 toc:nil num:3 ^:{}
+#+LATEX_CLASS: vmemoirpart
+#+LATEX_CLASS_OPTIONS: [11pt,twoside,openany,strict,extrafontsizes,hyphens,table,a4paper,article]
+#+LATEX_CLASS_OPTIONS: [11pt,twoside,openany,strict,extrafontsizes,article]
+#+LATEX_HEADER: \usepackage{placeins}
+#+LaTeX_HEADER: \usepackage{pdfpages}
+#+LATEX_HEADER: \usepackage{multicol}
+#+LATEX_HEADER: \setlength\tabcolsep{1 pt}
+#+LATEX_HEADER: \raggedbottom
+#+LATEX_HEADER: \feetatbottom
+#+LATEX_HEADER: \usepackage{tcolorbox}
+#+LATEX_HEADER: \usepackage{enumitem}
+#+LATEX_HEADER: \usepackage{dblfloatfix}
+#+LATEX_HEADER: \usepackage{chngcntr}
+#+LATEX_HEADER: \usepackage[hang,flushmargin]{footmisc}
+#+LATEX_HEADER: \setlength{\footmarkwidth}{1.5em}
+#+LATEX_HEADER: \setlength{\footmarksep}{1em}
+#+LATEX_HEADER: \footmarkstyle{#1\hfill}
+#+LATEX_HEADER: \usepackage{comment,multirow,booktabs,threeparttable,lmodern,graphicx,longtable,float,wrapfig,url,underscore}
+#+LATEX_HEADER: \newcolumntype{C}{>{\centering\arraybackslash}X}
+#+LATEX_HEADER: \usepackage[add-decimal-zero = true,add-integer-zero = true, round-integer-to-decimal,round-mode=places,round-precision=1,group-separator={,}]{siunitx}
+#+LATEX_HEADER: \newcommand{\mcone}[1]{\multicolumn{1}{C}{#1}}
+#+MACRO: MCONE @@latex:\mcone{$1}@@
+#+LATEX_HEADER: \newcommand{\mc}[1]{\multicolumn{1}{c}{#1}}
+#+MACRO: MC @@latex:\mc{$1}@@
+#+PROPERTY: header-args:R :session nss70 :eval never-export
+#+macro: getcell src_emacs-lisp[:results value raw]{(org-table-get-remote-range "$1" "$2")}
+#+macro: roundnum src_emacs-lisp[:results value raw]{(round (string-to-number (org-table-get-remote-range "$1" "$2")))}
+#+INCLUDE: bibliobase/vikas-bibstyle.org
+#+LATEX_HEADER: \addbibresource{bibliobase/bibliobase.bib}
+#+LATEX_HEADER: \usepackage{fontspec,xltxtra}
+#+LATEX_HEADER: \setmainfont[Ligatures=TeX,Scale=1.0454]{Minion Pro}
+#+LaTeX_HEADER: \setlength\midchapskip{10pt}
+#+LATEX_HEADER: \makechapterstyle{myverville}{%
+#+LATEX_HEADER:  % \chapterstyle{default}
+#+LATEX_HEADER:   \setlength{\beforechapskip}{0pt}
+#+LATEX_HEADER:   \renewcommand*{\printchaptername}{}
+#+LATEX_HEADER:   \renewcommand*{\printchapternum}{%
+#+LATEX_HEADER:     \hrule \vskip 0.5\onelineskip
+#+LATEX_HEADER:     \Huge \centering}
+#+LATEX_HEADER:   \renewcommand*{\printchapternonum}{%
+#+LATEX_HEADER:     \hrule \vskip 0.5\onelineskip
+#+LATEX_HEADER:     \Huge \centering}
+#+LATEX_HEADER:   \renewcommand*{\afterchapternum}{}
+#+LATEX_HEADER:   \setlength{\midchapskip}{0pt}
+#+LATEX_HEADER:   \renewcommand*{\printchaptertitle}[1]{%
+#+LATEX_HEADER:     ##1 \par
+#+LATEX_HEADER:     \vskip 0.5\onelineskip
+#+LATEX_HEADER:   \hrule}}
+#+LATEX_HEADER: \renewcommand\cftappendixname{\appendixname~}
+#+LaTeX_HEADER: \chapterstyle{myverville}
+#+LATEX_HEADER: \renewcommand*{\thesection}{\arabic{section}}
+#+LATEX_HEADER: \setsecheadstyle{\raggedright\large\bfseries}
+#+LATEX_HEADER: \setsubsecheadstyle{\raggedright\bfseries}
+#+LATEX_HEADER: \setsecnumdepth{subsection}
+#+LATEX_HEADER: \settocdepth{section}
+#+LATEX_HEADER: \setrmarg{3.55em plus 1fil}
+#+LATEX_HEADER: \setlength{\cftbeforechapterskip}{3pt}
+#+LATEX_HEADER: \cftsetindents{section}{1.6em}{2em}
+#+LATEX_HEADER: \markboth{\newcommand*{\sectionmark}[1]{}}{\newcommand*{\chaptermark}[1]{}}
+#+LATEX_HEADER: \copypagestyle{mainmatterpage}{headings}
+#+LATEX_HEADER: \makeevenhead{mainmatterpage}{\leftmark}{}{}
+#+LATEX_HEADER: \makeoddhead{mainmatterpage}{}{}{\rightmark}
+#+LATEX_HEADER: \makeevenfoot{mainmatterpage}{\thepage}{}{}
+#+LATEX_HEADER: \makeoddfoot{mainmatterpage}{}{}{\thepage}
+#+LATEX_HEADER: \copypagestyle{othermatterpage}{headings}
+#+LATEX_HEADER: \makeevenhead{othermatterpage}{}{}{}
+#+LATEX_HEADER: \makeoddhead{othermatterpage}{}{}{}
+#+LATEX_HEADER: \makeevenfoot{othermatterpage}{}{\thepage}{}
+#+LATEX_HEADER: \makeoddfoot{othermatterpage}{}{\thepage}{}
+#+LATEX_HEADER: \addtopsmarks{headings}{}{
+#+LATEX_HEADER:   \createmark{chapter}{left}{nonumber}{}{}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \addtopsmarks{headings}{}{
+#+LATEX_HEADER:   \createmark{section}{right}{nonumber}{}{}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \nouppercaseheads
+#+LATEX_HEADER: \pagestyle{headings}
+#+LATEX_HEADER: \linespread{1.274}
+#+LATEX_HEADER: \setPagenoteSpacing{1.11}
+#+LaTeX_HEADER: \setFloatSpacing{1}
+#+LATEX_HEADER: \usepackage{caption}
+#+LATEX_HEADER: \captionsetup{justification=raggedright,singlelinecheck=false,labelsep=period,hypcap=false,skip=1pt}
+#+LATEX_HEADER: \clubpenalty=10000
+#+LATEX_HEADER: \widowpenalty=10000
+#+LATEX_HEADER: \hbadness=10000
+#+LATEX_HEADER: \pretolerance=2000
+#+LATEX_HEADER: \tolerance=2000
+#+LATEX_HEADER: \emergencystretch=10pt
+#+LATEX_HEADER: \hyphenpenalty=8000
+#+LATEX_HEADER: \newlength{\drop}
+#+LATEX_HEADER: \drop = 0.1\textheight
+#+LATEX_HEADER: \defbibheading{bibliography}[\refname]{}
+#+LATEX_HEADER: \usepackage[capposition=top]{floatrow}
+#+LATEX_HEADER: \hypersetup{hidelinks}
+#+INCLUDE: /Users/vikas/ssercloud/bibliobase/a4full.org
+#+LATEX_HEADER: \usepackage{titling}
+#+LATEX_HEADER: \usepackage[dvipsnames]{xcolor}
+#+LATEX_HEADER: \definecolor{sserred}{cmyk}{0.15,1,0.90,0.10}
+#+MACRO: NEWLINE @@latex:\linebreak@@ @@html:<br>@@
+#+MACRO: PARSPC @@latex:\\[0.5\baselineskip]@@ @@html:<br>@@
+#+LATEX_HEADER: \usepackage{pdflscape}
+#+LATEX_HEADER: \newcommand*{\titleGM}{\begingroup% Gentle Madness
+#+LATEX_HEADER: \vfill
+#+LATEX_HEADER:   \hbox{%
+#+LATEX_HEADER:   \textcolor{sserred}{
+#+LATEX_HEADER:   \hspace*{0.03\textwidth}%
+#+LATEX_HEADER:   \rule{10pt}{\textheight}
+#+LATEX_HEADER:   \hspace*{0.05\textwidth}}%
+#+LATEX_HEADER:   \parbox[b]{0.85\textwidth}{
+#+LATEX_HEADER:   \vtop to 110mm{%
+#+LATEX_HEADER:   \raggedright
+#+LATEX_HEADER:     {\noindent\HUGE\bfseries Agricultural Tenancy in Contemporary India\par}\\[3\baselineskip]
+#+LATEX_HEADER:     {\Large An Analytical Report and\par}\\
+#+LATEX_HEADER:     {\Large A Compendium of Statistical Tables\par}\\
+#+LATEX_HEADER:     {\Large based on NSSO Surveys of Land and Livestock Holdings\par}\\[2\baselineskip]
+#+LATEX_HEADER:     }% end of vtop
+#+LATEX_HEADER:   \vtop to 70mm{%
+#+LATEX_HEADER:     {\Large Vaishali Bansal \\[0.25\baselineskip] Yoshifumi Usami \\[0.25\baselineskip] Vikas Rawal }\par
+#+LATEX_HEADER:     }% end of vtop
+#+LATEX_HEADER:   \vtop to 30mm{%
+#+LATEX_HEADER:     {\Large SSER Monograph 18/1 }\par
+#+LATEX_HEADER:     }% end of vtop
+#+LATEX_HEADER:   \vbox to 30mm{%
+#+LATEX_HEADER:     \includegraphics[width=30mm,scale=0.3]{newlogocolour}
+#+LATEX_HEADER:   }% end of vbox
+#+LATEX_HEADER:   }% end of parbox
+#+LATEX_HEADER:   }% end of hbox
+#+LATEX_HEADER: \vfill
+#+LATEX_HEADER: \null
+#+LATEX_HEADER: \endgroup}
+#+LATEX_HEADER: \newcommand*{\titleSW}{\begingroup% 
+#+LATEX_HEADER: \raggedleft
+#+LATEX_HEADER:     {\noindent\HUGE\bfseries Agricultural Tenancy in Contemporary India\par}\\[3\baselineskip]
+#+LATEX_HEADER:     {\Large An Analytical Report and\par}\\
+#+LATEX_HEADER:     {\Large A Compendium of Statistical Tables\par}\\
+#+LATEX_HEADER:     {\Large based on NSSO Surveys of Land and Livestock Holdings\par}\\[2\baselineskip]
+#+LATEX_HEADER: \raggedleft
+#+LATEX_HEADER: \vspace*{50pt}
+#+LATEX_HEADER:     {\Large Vaishali Bansal \\[0.1\baselineskip] Yoshifumi Usami \\[0.25\baselineskip] Vikas Rawal }\par
+#+LATEX_HEADER: \vfill
+#+LATEX_HEADER: \raggedright
+#+LATEX_HEADER: \vspace*{20pt}
+#+LATEX_HEADER: \hfill \includegraphics[width=3cm,scale=0.3]{newlogocolour}
+#+LATEX_HEADER: \vspace*{40pt}
+#+LATEX_HEADER: \endgroup}
+#+LATEX_HEADER: \newcommand\blfootnote[1]{%
+#+LATEX_HEADER:   \begingroup
+#+LATEX_HEADER:   \renewcommand\thefootnote{}\footnote{#1}%
+#+LATEX_HEADER:   \addtocounter{footnote}{-1}%
+#+LATEX_HEADER:   \endgroup
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \newenvironment{hangingpar}[1]
+#+LATEX_HEADER:   {\begin{list}
+#+LATEX_HEADER:           {}
+#+LATEX_HEADER:           {\setlength{\itemindent}{-#1}%%'
+#+LATEX_HEADER:            \setlength{\leftmargin}{#1}%%'
+#+LATEX_HEADER:            \setlength{\itemsep}{0pt}%%'
+#+LATEX_HEADER:            \setlength{\parsep}{\parskip}%%'
+#+LATEX_HEADER:            \setlength{\topsep}{\parskip}%%'
+#+LATEX_HEADER:            }
+#+LATEX_HEADER:     \setlength{\parindent}{-#1}%%
+#+LATEX_HEADER:     \item[]
+#+LATEX_HEADER:   }
+#+LATEX_HEADER:   {\end{list}}
+#+LATEX_HEADER: \renewcommand{\TPTminimum}{\linewidth}
+#+LATEX_HEADER: \setcolsepandrule{10pt}{0pt}
+# #+LATEX_HEADER: \setlength{\abovecaptionskip}{1pt plus 1pt minus 1pt}
+#+LATEX_HEADER: \counterwithin*{chapter}{part}
+#+LATEX_HEADER: \setaftersubsecskip{1sp}
+#+LATEX_HEADER: \renewcommand*{\theHchapter}{\thepart.\thechapter}
+#+LATEX_HEADER: \usepackage[ISBN=978-81-937148-3-6]{ean13isbn}
+#+LATEX_HEADER: \renewcommand{\descriptionlabel}[1]{\hspace{\labelsep}\textit{#1}}
+
+\frontmatter
+\thispagestyle{empty}
+\titleGM
+\pagenumbering{gobble}
+
+\mbox{}
+\newpage
+\thispagestyle{empty}
+\pagenumbering{roman}
+\titleSW
+\mbox{}
+\newpage
+\thispagestyle{empty}
+
+** Preface
+\thispagestyle{othermatterpage}
+\chaptermark{Preface}
+
+
+Our research on agricultural tenancy, of which this volume is the outcome, involved a detailed assessment of the 48^{th} (1991-92), 59^{th} (2002-03) and 70^{th} (2012-13) rounds of the NSSO Surveys of Land and Livestock Holdings (NSSO-SLLH). This assessment included detailed household-by-household corrections to remove a number of inconsistencies in the data. The corrected data are being released for public use along with this volume.
+
+There are three main findings of the analysis of agricultural tenancy in the report. First, there has been a significant increase in the  incidence of tenancy between 2002--03 and 2012--13. While there are considerable variations in levels and trends across States and regions, the trends over this decade were in a sharp contrast with the decline in tenancy seen in the NSS data for the preceding three decades. Secondly, the data suggest that landless poor households are increasingly marginalised in tenancy markets as a substantial part of land is leased by large, resource-rich households. Thirdly, the data show that there has been an increase in the share of land leased on fixed-rent tenancy contracts, and in particular, on fixed-rent contracts with payment of rent in the form of money. An increasing participation of large, resource-rich tenants marginalises poor from the lease market and forces them to accept more onerous terms of contracts.
+
+Our assessment of the NSSO Surveys of Land and Livestock Holdings point to the need for NSSO to conduct an integrated survey of agrarian conditions in which comprehensive data on land, land use, production, labour deployment, input use and investment are collected from the same sample of households. In the current scheme of NSSO surveys, crucial aspects of the agrarian economy are captured in different survey schedules, canvassed to different samples of households. There are also other important problems with the design of these surveys which ought to be paid attention.
+
+The second part of this volume presents a detailed compendium of statistical tables on landholdings. A set of 35 tables are provided for twenty most populous States for which survey data were available. In case of States where number of sample observations was substantial, six additional tables are provided for each region of the State.
+
+Recently, the Haque Committee has recommended that agricultural tenancy be freed of all state regulation. Analysis of the NSSO-SLLH data presented in this volume point at continued relevance of state regulation of agricultural tenancy in favour of poor tenants. Although tenancy reform legislation have not been effectively implemented except in a few States, a withdrawal of these regulations would only work to further marginalise poor tenants.
+
+\vspace{7mm}
+
+#+BEGIN_flushright
+
+\noindent New Delhi \hfill Vaishali Bansal \\
+\noindent 4 May 2018 \hfill Yoshifumi Usami \\
+\noindent Vikas Rawal
+
+#+END_flushright
+
+** Acknowledgements
+
+\thispagestyle{othermatterpage}
+\chaptermark{Acknowledgements}
+
+This report is an outcome of a two years long effort of a research team that included, apart from us, Jesim Pais, Prachi Bansal and Sonia.
+
+Unit-level data from three rounds of NSSO Land and Livestock Holdings Surveys were corrected by Sonia under overall supervision by Jesim Pais and Vaishali Bansal. Authors are particularly indebted to Sonia for her meticulous work on the household-level data.
+
+Jesim and Prachi provided valuable inputs at various stages of the analysis. They were subjected to repeated presentations of the work and were made to read several drafts. Their suggestions have been crucial to the final outcome.
+
+Early drafts of the work were presented in the S. R. Sankaran Chair National Seminar on Land Market and Rural Poor (Hyderabad, January 18--19, 2018) and the Sam Moyo Memorial Conference on Land and Labour Questions in the Global South (New Delhi, February 21--23, 2018). We are thankful to participants of these conferences for their comments.
+
+While we have benefited from the contributions of many, we remain solely responsible for any errors in the analysis.
+
+\vspace{7mm}
+
+#+BEGIN_flushright
+
+\noindent Vaishali Bansal \\
+\noindent Yoshifumi Usami \\
+\noindent Vikas Rawal
+
+#+END_flushright
+
+* Agricultural Tenancy in Contemporary India
+\cleartorecto
+** Agricultural Tenancy in Contemporary India
+
+\chaptermark{Agricultural Tenancy in Contemporary India}
+
+#+LATEX: \settocdepth{section}
+
+#+LATEX: \setlength\columnsep{25pt}
+
+#+LATEX: \begin{multicols}{2}
+
+*** Test                                                         :noexport:
+#+Begin_src R :results value silent :exports none
+  ls()
+#+END_SRC
+*** Introduction
+
+The problem of tenancy ---  informal, insecure, exploitative, and often unfree and interlocked contracts for leasing land that have been both growth-retarding and unjust --- has been central to the agrarian question in India. Along with an uneven and distorted penetration of capitalist relations in the Indian countryside, there have been significant changes in the extent of use of tenancy, in the class configuration of tenants and lessors, and in the form of tenancy contracts over the last few decades. With the state unwilling to effectively implement land reforms in most parts of India, tenancy relations have continued to be informal, exploitative and embedded in socio-economic power relations.
+
+Over the last three decades, the Indian state has become increasingly hostile to the idea of using land reforms as a tool for bringing about progressive agrarian change. Under a neoliberal regime, not only has the state discarded the agenda of redistributive land reforms and tenancy regulation, the focus of state policy has shifted to ensuring free and unrestricted functioning of land markets.  In the neoclassical tradition, contemporary positions on tenancy range from considering tenancy (and thus, tenancy reforms) as a marginal aspect of land relations to treating state-led tenancy reforms as a cause of prevalence of insecure tenancy. Recently, the Haque Committee has recommended that tenancy markets be freed from any state regulation citep:haquecommittee2016. The committee argued that restrictions on leasing of land have resulted in inefficient utilisation of land, and have worked against the interests of small landowners.  It has proposed that liberalising tenancy markets would allow owners of small, uneconomic holdings to lease out their lands to large landowners, and move to other occupations. Creating a way for small and marginal farmers to leave agriculture, through promotion of reverse tenancy, and thus aiming to reduce the size of agricultural workforce, is also a centrepiece of the present government's strategy to double farmers' income citep:dalwaicommittee13.
+
+The objective of this paper is not to contribute to the debate on the importance of state-led tenancy reforms or to critique the neoliberal prescriptions for freeing tenancy markets. Based on an  understanding that the problem of tenancy is an important part of the agrarian question in India, this paper is written with a limited objective of presenting a careful and comprehensive analysis of trends and regional variations in incidence of agricultural tenancy over  the last two decades. The paper also attempts to provide an assessment of class and caste position of tenants in different parts of India, and throw some light on the changes in the relative importance of different types of tenancy contracts.
+
+The paper uses detailed unit-level data from the 48^{th} (1991--92), 59^{th} (2002--03) and 70^{th} (2012--13) rounds of the NSS Land and Livestock Surveys. While secondary data on tenancy are very problematic, and leave much to be desired, of what is available, NSS Surveys of Land and Livestock Holdings (NSSO-SLLH) are the most detailed.  This paper is an outcome of two years of work that involved an assessment of the NSSO-SLLH data, correcting unit-level NSSO-SLLH data to remove a large number of inconsistencies, and a detailed analysis of the data.
+
+The paper is organised as follows. Section [[#methodology]] discusses the data and their limitations. It describes the nature of inconsistencies in data and how we corrected them. In Section [[#incidence]], we present a discussion of trends and patterns of variation of incidence of tenancy in different parts of India. We then go on to discuss the class and caste (Section [[#class]]) position of tenants in different States, and to throw some light on relative position of tenants and lessors. And finally, we discuss the changes in the types of tenancy contract in different parts of India (Section [[#contracttype]]).
+
+*** Data and Methodological Issues
+:PROPERTIES:
+:CUSTOM_ID: methodology
+:END:
+
+This paper is primarily based on data from three rounds of the NSSO's Surveys of Land and Livestock Holdings (NSSO-SLLH). All estimates presented in the paper refer only to rural households. NSSO's Surveys of Land and Livestock Holdings (Schedule 18.1) provide the most detailed and nationally-representative statistics on land relations in India. The surveys, conducted decennially,  involve collection of detailed plot-by-plot data on land owned and/or possessed. Plot-wise data include information on tenurial status, land use and access to irrigation. As part of these surveys, each sample household is visited twice during the survey year; in each visit, information on the status of landholdings is collected for the preceding six months.
+
+There are four main limitations of the landholdings data from the NSSO-SLLH.
+
+First, while the surveys collect dis-aggregated plot by plot data, no information is collected on a number of crucial aspects. There is no information on sale and purchase of land, or on its market value. Apart from very limited information on land use, the surveys do not collect any data on what is done on the land. There are no data on production, labour use or investment on land. There is no information on lessors from whom tenants lease-in land, or on tenants to whom lessors lease out. There is no information even on the rent of leased-in and leased-out land. There is no attempt to capture interlocking of tenancy markets with other markets.
+
+Secondly, data suffer from under-reporting of landownership and tenancy, particularly by large landowners. In contrast with the findings of primary data-based studies, NSSO-SLLH do not correctly capture landholdings of big landowners and cultivators. Also, a comparison of data on leasing in and leasing out from NSSO-SLLH suggests that lessors under-report incidence of tenancy more than the tenants citep:sawant1991.
+
+citep:sawant1991
+
+Thirdly, the estimates of total operated area from the NSSO-SLLH are considerably lower than the total operated area reported in the agricultural censuses and the estimate of net sown area for the country (Table [[sample-problems]]; also see citealp:deepak2016). The gap between the estimate of operated area from NSSO-SLLH and the estimate of net sown area from land use statistics has grown over the years, and was particularly high in case of the 2012--13 survey. The estimate of total operated area from the 70^{th} round survey for 2012--13 was only 58 per cent of total operated area reported in the Agricultural Census of 2010--11 and 66 per cent of the net sown area for 2012--13. This large discrepancy could be on account of under-reporting of land as well as because of sampling and other non-sampling errors. It is noteworthy that, for all surveys prior to the 70^{th} round, estimates of number of households from the NSSO surveys were very close (and always marginally higher) to the number of households counted in the population censuses. In the 70^{th} round survey, the estimate of number of households from the NSSO-SLLH was 7 per cent lower than the number of households counted in the population census of 2011. This suggests that, in addition to the problems of under-reporting by respondents, incomplete house-listing and problems of sampling may also be contributing to the increasing underestimation of total operated area in NSSO-SLLH. Given that the NSSO does not release detailed house-listing data from sampled villages, it is not possible to estimate the extent to which the discrepancy in estimates of total operated area may be on account of errors in house-listing and sampling.
+
+#+NAME: sample-problems
+#+CAPTION: Comparison of NSSO-SLLH estimates of total operated area and number of rural households with data from land use statistics and population censuses, India
+#+ATTR_LATEX: :float t :placement [htb]
+#+begin_table*
+#+begin_threeparttable
+#+ATTR_LATEX: :environment tabularx :width \textwidth
+#+ATTR_LATEX: :align @{}l*{5}{S[table-format=3.1,round-precision=1,tight-spacing=true]}@{}
+#+ATTR_LATEX: :center :booktabs t
+|     Year of |                      <2colc>Number of rural |                                                   |                  <2colc>Total operated area |                                                       |                            {{{MCONE(Net sown area)}}} |
+| NSSO survey |                <2colc>households (millions) |                                                   |                   <2colc>(million hectares) |                                                       |                          {{{MC((million hectares))}}} |
+|     <2cid3> |                                     <4cid5> |                                                   |                                             |                                                       |                                                       |
+|     <6cid6> |                                             |                                                   |                                             |                                                       |                                                       |
+|             | {{{MCONE((NSSO-SLLH)\textsuperscript{1})}}} | {{{MCONE((Census of India)\textsuperscript{2})}}} | {{{MCONE((NSSO-SLLH)\textsuperscript{1})}}} | {{{MCONE((Agricultural Census)\textsuperscript{3})}}} | {{{MCONE((Land use statistics)\textsuperscript{4})}}} |
+|-------------+---------------------------------------------+---------------------------------------------------+---------------------------------------------+-------------------------------------------------------+-------------------------------------------------------|
+|    1971--72 |                                  100.612300 |                                        100.194100 |                                  130.094400 |                                            162.100000 |                                            139.721000 |
+|    1981--82 |                                   93.855000 |                                         93.822000 |                                  116.463000 |                                            163.800000 |                                            139.414300 |
+|    1991--92 |                                  115.903100 |                                        111.591326 |                                  124.593100 |                                            165.500000 |                                            140.897600 |
+|    2002--03 |                                  147.838000 |                                        138.271559 |                                  107.648000 |                                            159.400000 |                                            140.734000 |
+|    2012--13 |                                  156.144200 |                                        168.565486 |                                   92.368578 |                                            159.200000 |                                            140.980000 |
+#+attr_latex: :options [flushleft]
+#+begin_tablenotes
+#+begin_footnotesize
++ Notes: :: \mbox{}
+     + Data on number of households from the population censuses are for 1971, 1981, 1991, 2001 and 2011.
+     + Population census was not conducted in Assam in 1981 and in Jammu and Kashmir in 1991. For the sake of comparability across sources, data for Assam were excluded from all the estimates for 1981--82, and data for  Jammu and Kashmir were excluded from all the estimates for 1991--92.
+     + Agricultural Census data are for 1970--71, 1980--81, 1990--91, 2000--01 and 2010--11.
++ Sources: :: \mbox{}
+     1. \citet{nssreport_331,nssreport_330} for 1971--72 and 1981--82; computed using unit-level data for 1991--92, 2002--03 and 2012--13.
+     2. Primary Census Abstracts of different Censuses.
+     3. Various volumes of Agricultural Censuses.
+     4. Various volumes of Agricultural Statistics at a Glance.
+#+end_footnotesize
+#+end_tablenotes
+#+end_threeparttable
+#+end_table*
+
+Fourthly, a detailed examination of unit-level data from the 48^{th}, 59^{th} and 70^{th} round surveys showed that there are many gaps and inconsistencies in recording information. For example, in the 48^{th} round survey, information on land use, irrigation and type of tenancy contract was not recorded for all the plots. For each household, in each visit, the investigators recorded, in the last row of the Block on plot-wise information, an additional entry with plot number 99 and enter sum of area of all the listed plots in it. In the 59^{th} round, the totals reported in this row of data were incorrect for many households. In the 59^{th} and 70^{th} rounds, plot numbers were not always consistently recorded, resulting in mismatching of plots between the two visits.
+
+Although we have corrected many of the inconsistencies of data recording, basic limitations of the surveys remain, and must be borne in mind in analysis and interpretation of results based on NSSO-SLLH data.
+
+In this report, although estimates for India as a whole include all sample observations, State-level estimates are not provided separately for those States for which sample observations were too few.
+
+**** Computing operational holdings of sample households
+:PROPERTIES:
+:CUSTOM_ID: dataerrors
+:END:
+
+Household operational holding is estimated as sum of all the land possessed by a household during major part of the reference year either by way of ownership or through leases and mortgages or in any other way (including land occupied without any formal or informal contract). Since each round of NSSO-SLLH comprises two visits to the sample households, computing operational holding for the reference year requires combining plot-wise data from both the visits.
+
+In the 48^{th} round survey, data from the two visits were combined by the investigators themselves in Block 14 of the Schedule for the second visit to get the annual operational holding.[fn:1] However, an examination of unit-level data showed that, for 2750 sample plots in this block, the area of land possessed computed using plot-wise information on area owned, area leased-out, area leased-in and area otherwise possessed did not match with operated area reported in the same block. In most such cases, we were able to correct these discrepancies using data provided in other blocks of Visit 1 and 2.
+
+However, in the 59^{th} and the 70^{th} rounds, investigators only reported plot-by-plot data separately for the two visits. Unlike in the 48^{th} round, they were not required to compute annual operational holding at the time of the second visit. In the 59^{th} round, no method for combining data from the two visits to estimate annual operational holding was specified either in the instruction manuals of the survey or in the NSSO report of the survey. The NSSO report on operational holdings of land based on the 59^{th} round survey citep:nsso2003land dealt with operational holding in the two visits (seasons) separately. For the 70^{th} round survey, the instruction manual of the survey specified following steps, to be used at the time of analysis, to combine data from the two visits to compute annual operational holding (citealp:nss70manual, /p./ C-27).
+
+#+attr_latex: :options [leftmargin=*]
+1. All plots of land on which some agricultural production was undertaken in any of the two visits were identified.[fn:2]
+2. For households which possessed at least one such plot on which agricultural production was undertaken in any of the two visits, all plots of land recorded in the two visits were matched using the unique plot numbers.
+3. In cases where area recorded for the same plot number was different  in the two visits, higher of the two values recorded for area was considered as area of the plot. For plots that were recorded as possessed in only one of the visits, the area recorded in that visit was considered as area of the plot.
+
+To keep the estimates consistent, we used this method for combining data from the two visits for both the 59^{th} and the 70^{th} rounds.
+
+In the NSSO-SLLH rounds, plot-wise data across the two visits are supposed to be kept consistent by using a unique plot number to identify each plot of a household. This plot number is designed to remain unchanged between the two visits of a round even if the status of possession, land use and, in some cases, even the area of a plot changes between the two visits (say, on account of partitioning of a plot during the year). This unique plot number is key for combining data from the two visits. An examination of the plot-wise data, however, showed that, in both 59^{th} and 70^{th} round data, there were cases in which plot numbers were wrongly recorded in the second visit resulting in errors in matching of information from the two visits. While in several cases, it is impossible to ascertain that the changes are a result of errors of recording and not on account of actual changes in the landholding of the household, in many other cases, it could be said beyond reasonable doubt that there had been an error in recording the plot numbers. Such cases were corrected.
+
+Implementing NSSO's method of combining data from two visits without making these corrections results in over-estimation of household operational holding because, for plots where areas reported in two visits do not match, higher of the two reported areas is always taken to be the area of the plot.
+
+It may also be noted that none of the three rounds of NSSO-SLLH have a clear methodology for recording plot numbers consistently when a plot is partitioned between Visit 1 and 2, or when two plots in Visit 1 are consolidated into a single plot in Visit 2. In such cases, data are inconsistently recorded, without even a uniformly applied practice, resulting in a miscalculation of total operated area. In cases where it was clear that the plots had been partitioned or consolidated, we introduced a new common plot number for all the fragments of a plot and added a new variable, a sub plot number, to identify each fragment. This allowed us to properly deal with plots that were partitioned, or combined into one, when data were recorded in the second visit.
+
+In NSSO reports based on the NSSO-SLLH, household operational holding is defined to include all plots of households that cultivate some land. These include homestead land and plots used for other non-agricultural purposes. Since the focus of our analysis is on productive land, we have excluded homestead land from the definition of household operational holding. It may be noted that, unlike in the later surveys, homestead plots in the 48^{th} round survey were not divided between area used for homestead cultivation and area used for housing citep:epwland2008. As a result, we excluded the entire homestead land from agricultural operational holding for the 48^{th} round.
+
+To avoid bias in the estimates of tenancy and of operated area, in situations where status of possession of a particular plot was different in the two visits, we equally divided the area of plot between the two statuses of possession. For example, if the status of possession of a plot was "leased-in" in one visit but something else in the other, in the estimation of household operational holding for the reference year, we considered only half the area of the plot to have been leased in for the entire agricultural year.
+
+*** Increasing Incidence of Tenancy
+:PROPERTIES:
+:CUSTOM_ID: incidence
+:END:
+
+The most important finding from our analysis of the NSSO-SLLH data is that, at the all-India level, there was a significant increase in the incidence of tenancy between 2002--03 and 2012--13.
+
+In Table [[ind1_tenant_2_hhd]], we have compiled estimates given in NSSO reports for the 26^{th} and 37^{th} rounds of NSSO-SLLH surveys, and our estimates based on corrected unit-level data from the subsequent three surveys. These estimates show that the proportion of tenants among rural households and proportion of leased-in land in total operated area fell between 1971--72 and 2002--03. The decline in tenancy over this period was explained variously, including on account of problems of data (that is, inability of NSSO-SLLH to capture all tenancy contracts), reduction in supply of land for lease (eviction of tenants because of tenancy reform legislation, increasing dominance of marginal holdings, and resuming self-cultivation for better utilisation of capital invested by landowners in machinery and irrigation), and reduction in demand for leasing land (declining unemployment and poverty, and rising wages, during the 1980s).
+
+The trends over the last decade, between 2002--03 and 2012--13, presented in Table [[ind1_tenant_2_hhd]], are in a sharp contrast to the trends over the past three decades. At the all-India level, proportion of tenants among rural households increased from 8 per cent in 2002--03 to 10.3 per cent in 2012--13. In 2002--03, about 6.7 per cent of total area under operational holding was leased in; by 2012--13, this had increased to 11.1 per cent. In 2012--13, the share of leased-in area in operational holding was the highest ever recorded in the last five rounds of NSSO-SLLH.
+
+It should be pointed out that the extent of tenancy reported by the lessors of land is considerably lower than the extent of tenancy reported by tenants. citet:sawant1991 has shown that there is a large concealment of tenancy in the data on leasing out in NSSO-SLLH, and that the extent of concealment is non-uniform across classes and States. Similarly, agricultural censuses, which are based on retabulation of land records in most States of India, also record very low levels of tenancy.[fn:3]  In comparison with estimates presented in Table [[ind1_tenant_2_hhd]], only 0.94 per cent of the operated area was reported as being under tenancy contracts in the Agricultural Census for 2010--11.[fn:4] Given that most of the tenancy contracts in India are informal and short-term, and do not comply with tenancy reform laws, landowners do not register tenancy contracts in land records.[fn:5]
+
+#+NAME: ind1_tenant_2_hhd
+#+CAPTION: Tenants as a proportion of all rural and cultivator households, leased-in land as a proportion of total operated area, India, 1971--72, 1982, 1991--92, 2002--03 and 2012--13 (per cent)
+#+ATTR_LATEX: :float t :placement [htb]
+#+begin_table*
+#+begin_threeparttable
+#+ATTR_LATEX: :environment tabularx :width 0.9\textwidth
+#+ATTR_LATEX: :align @{}lS[table-format=2.0,round-mode=off]*{3}{S[table-format=2.1]}@{}
+#+ATTR_LATEX: :center :booktabs t
+#+RESULTS: ind1_tenant_2_hhd_code
+|     Year | {{{MCONE(NSS Round)}}} | {{{mcone(Tenants/ Rural households)}}} | {{{mcone(Tenants/ Cultivator households)}}} | {{{mcone(Leased-in area/ Operated area)}}} |
+|----------+------------------------+----------------------------------------+---------------------------------------------+--------------------------------------------|
+| 1971--72 |                     26 |                                  25.29 |                                         nil |                                      10.57 |
+|     1982 |                     37 |                                  17.78 |                                       24.04 |                                       7.18 |
+| 1991--92 |                     48 |                                    9.3 |                                        12.8 |                                        8.7 |
+| 2002--03 |                     59 |                                      8 |                                        11.4 |                                        6.7 |
+| 2012--13 |                     70 |                                   10.3 |                                          15 |                                       11.1 |
+#+attr_latex: :options [flushleft]
+#+begin_tablenotes
+#+begin_footnotesize
+\begin{Spacing}{0.8}
+\setlength\labelsep{0pt}
+\item[] \textit{Source}: Estimates for 1971--72 and 1982 taken from \citet{nssreport_331,nssreport_330}; estimates for 1991--92, 2002--03 and 2012--13 computed using the corrected unit-level data for each round.
+\end{Spacing}
+#+end_footnotesize
+#+end_tablenotes
+#+end_threeparttable
+#+end_table*
+
+*** Regional Variations in Incidence of Tenancy
+
+While the NSSO-SLLH show that there has been a large increase in the incidence of tenancy at the all-India level, there are considerable regional variations in the levels and trends of incidence of tenancy (Table [[all_states_opr_hhd]]). Figure [[regionmap]]  shows regional variations in the incidence of tenancy in 2012--13 using both the proportion of tenants in all households and leased-in area as a proportion of total operated area. Figure [[tenancy-change-map]] maps the percentage point change between 2002--03 and 2012--13 in both these indicators across different regions. These figures show that there are marked regional variations not only across States but also across different regions within many States.
+
+#+NAME: all_states_opr_hhd
+#+CAPTION:  Proportion of tenants in cultivator households and proportion of leased-in area in total operated area, State-wise, 1991--92, 2002--03 and 2012--13 (per cent)
+#+ATTR_LATEX: :float t :placement [htb]
+#+begin_table*
+#+ATTR_LATEX: :environment tabularx :width \textwidth
+#+ATTR_LATEX: :align @{}l*{6}{S[table-format=2.1,round-precision=1]}@{}
+#+ATTR_LATEX: :center :booktabs t
+#+RESULTS: all_states_opr_hhd_code
+| States            |        <3colc>Proportion of tenants |                       |                       | <3colc>Proportion of leased-in area |                       |                       |
+|                   | <3colc> among cultivator households |                       |                       |      <3colc> in total operated area |                       |                       |
+| <2cid4>           |                             <5cid7> |                       |                       |                                     |                       |                       |
+|                   |               {{{MCONE(1991--92)}}} | {{{MCONE(2002--03)}}} | {{{MCONE(2012--13)}}} |               {{{MCONE(1991--92)}}} | {{{MCONE(2002--03)}}} | {{{MCONE(2012--13)}}} |
+| <mid>             |                                     |                       |                       |                                     |                       |                       |
+| Jammu and Kashmir |                                 6.1 |                   1.3 |                   0.4 |                                 3.8 |                   0.3 |                   0.2 |
+| Himachal Pradesh  |                                 8.5 |                   8.5 |                  12.5 |                                 4.9 |                   2.8 |                   6.3 |
+| Punjab            |                                24.9 |                  14.2 |                  20.1 |                                19.2 |                  18.7 |                  26.1 |
+| Haryana           |                                18.7 |                  13.9 |                   9.1 |                                33.7 |                  15.5 |                  15.2 |
+| Uttarakhand       |                                20.9 |                   6.9 |                   5.8 |                                15.3 |                   4.3 |                   3.9 |
+| Uttar Pradesh     |                                17.4 |                  16.1 |                  11.8 |                                10.7 |                   9.9 |                     8 |
+| Rajasthan         |                                 7.5 |                   3.6 |                   8.4 |                                 5.5 |                   3.1 |                   7.3 |
+| Madhya Pradesh    |                                 9.8 |                   6.1 |                   6.9 |                                 5.8 |                   2.4 |                   5.4 |
+| Gujarat           |                                 4.6 |                   5.1 |                   6.1 |                                 3.4 |                   4.9 |                   6.2 |
+| Maharashtra       |                                 7.2 |                     7 |                   4.9 |                                 5.7 |                   4.7 |                   3.3 |
+| Karnataka         |                                10.3 |                   5.4 |                   6.9 |                                 8.3 |                   3.5 |                   6.9 |
+| Kerala            |                                 4.3 |                   5.9 |                  10.2 |                                 2.9 |                   4.5 |                   9.3 |
+| Tamil Nadu        |                                16.6 |                   9.7 |                  15.2 |                                11.9 |                   6.8 |                  14.3 |
+| Andhra Pradesh    |                                21.2 |                  20.8 |                  42.8 |                                14.2 |                  16.9 |                  41.5 |
+| Telangana         |                                 5.2 |                   4.7 |                    20 |                                 4.4 |                   3.1 |                  15.5 |
+| Chhattisgarh      |                                15.5 |                  12.2 |                  11.6 |                                  10 |                   5.6 |                  11.4 |
+| Orissa            |                                18.4 |                  19.9 |                  22.9 |                                10.3 |                  13.8 |                  18.2 |
+| Jharkhand         |                                 2.8 |                   5.4 |                   6.5 |                                 1.5 |                   2.3 |                   2.1 |
+| Bihar             |                                 9.4 |                  17.2 |                  29.9 |                                 5.5 |                    12 |                  22.5 |
+| West Bengal       |                                18.4 |                  16.2 |                  27.7 |                                10.9 |                  10.5 |                  16.7 |
+| Assam             |                                12.3 |                   8.9 |                   8.2 |                                 9.8 |                   4.9 |                   4.6 |
+| <mid>             |                                     |                       |                       |                                     |                       |                       |
+| India             |                                12.8 |                  11.4 |                    15 |                                 8.7 |                   6.7 |                  11.1 |
+#+end_table*
+
+
+#+name: regionmap
+#+CAPTION: Incidence of tenancy across different regions, India, 2012--13 (per cent)
+#+begin_figure*
+#+ATTR_LATEX: :width 0.95\textwidth :center
+#+RESULTS: ind1_map_code
+[[file:regiontenancy.png]]
+#+end_figure*
+
+#+name: tenancy-change-map
+#+CAPTION: Change in incidence of tenancy across different regions, India, 2002--03 to 2012--13 (per cent)
+#+begin_figure*
+#+begin_threeparttable
+#+ATTR_LATEX: :width 0.95\textwidth :center
+#+RESULTS: ind1_map_change_code
+[[file:regionchange.png]]
+#+attr_latex: :options [flushleft]
+#+begin_tablenotes
+#+begin_footnotesize
++ Note: :: Estimates could not be made for regions marked in grey because of small sample size.
+#+end_footnotesize
+#+end_tablenotes
+#+end_threeparttable
+#+end_figure*
+
+Following points stand out from these figures.
+
+Most of the eastern coast, from West Bengal to Andhra Pradesh, has seen a sharp rise in tenancy over the last two decades and has emerged as a region of exceptionally high prevalence of tenancy. In particular, from moderate levels of incidence of tenancy until the 1980s, coastal Andhra Pradesh, Rayalaseema and coastal Orissa  have emerged as the areas with highest incidence of tenancy (Figure [[regionmap]]). In 2012--13, about 55 per cent of operated area was cultivated on tenancy contracts in coastal Andhra Pradesh and about 46 per cent of cultivating households had leased in some land. In Rayalaseema, about 35 per cent of operated area was leased in by about 41 per cent of cultivators. In coastal Orissa, 32 per cent of operated area was cultivated through tenancy contracts by about 36 per cent of cultivators. Telangana, which was a region with low incidence of tenancy until 2002--03, also saw a sharp rise in both proportion of tenants among cultivators and share of leased-in land in total operated area.
+
+In West Bengal, a substantial rise in incidence of tenancy has taken place in the central plains and western plains regions. In central plains, the proportion of tenants among cultivators increased by about 12  percentage points and proportion of leased-in land in total operated area increased by about 6.5 percentage points between 1991--92 and 2012--13. In western plains, incidence of tenancy increased primarily after 2002--03: about 12 percentage point increase in proportion of area and about 17 percentage point increase in proportion of tenants among cultivators.
+
+Eastern Haryana, Western Uttar Pradesh and Uttarakhand have seen a decline in incidence of tenancy. The change in Haryana is particularly noteworthy as it was a State with high levels of incidence of tenancy until 1991--92 but has seen a sharp drop in incidence of tenancy since then. In 1991--92, 34 per cent of operational holding was cultivated on tenancy contracts by 19 per cent of cultivators. In 2012--13, in contrast, only 15 per cent of operated area was cultivated on tenancy contracts by 9 per cent of cultivating households. The drop in prevalence of tenancy has taken place particularly in the eastern regions of Haryana, while rest of the State has seen a marginal increase.
+
+In contrast with neighbouring Haryana, Punjab is a State that saw a small drop in prevalence of tenancy between 1991--92 and 2002--03, and then a rise in the following decade. Over the last decade, the rise in incidence of tenancy was greater in southern parts of Punjab. The Malwa area -- comprising southern districts of Punjab, canal irrigated areas of Northwestern Rajasthan and Western Haryana -- is an area with high incidence of tenancy.
+
+Contrary to the national trends, Uttar Pradesh saw a steady decline in the proportion of tenants among rural households as well as share of leased-in land in total operated area between 1991--92 and 2012--13. The decline was particularly sharp in the Western and Central Uttar Pradesh, and relatively small in Bundelkhand region. Eastern Uttar Pradesh saw a 2.5 percentage point increase in the proportion of operated area that was cultivated on tenancy contracts.[fn:6]
+
+Bihar was historically a high tenancy area. In spite of that, the share of leased-in land in operated area for undivided Bihar was estimated to be 14.5 per cent in 1971--72 and 10.3 per cent in 1981. However, in what appears to be an erroneous estimate, the 1991--92 NSSO-SLLH survey recorded only 3.9 per cent of operated area as being under tenancy contracts in undivided Bihar. If, for the sake of comparability, we look at Bihar and Jharkhand together, leased in land was 9 per cent of operated area in 2002--03 and 17.4 per cent of operated area in 2012--13. This suggests that there has been a rise in the incidence of tenancy in Bihar, and the present level of area under tenancy contracts may be highest of what has been recorded in last five decades. citet:alakhrodgers2015, in a study based on longitudinal surveys of 36 villages across Bihar spanning three decades, found that there had been a substantial increase --- from about 25 per cent in 1998--99 to about 38 per cent in 2011 --- in the proportion of total land that was operated on tenancy contracts. The trend seen in the data from their surveys is broadly consistent with the increase in incidence of tenancy seen in the NSSO-SLLH data for Bihar.
+
+In Rajasthan, Shekhawati (the plains of inland drainage) and canal irrigated areas in the Northwestern region of the State  have seen a greater increase in incidence of tenancy than in other regions of the State. Humid south eastern plains have seen a fall in incidence of tenancy.
+
+In Gujarat, a State with low levels of incidence of tenancy, south Gujarat has seen an increase in incidence of tenancy while rest of the State saw a decline.
+
+In Maharashtra, another State with low levels of incidence of tenancy, incidence of tenancy declined in all the regions except Marathwada, which saw a small rise. Eastern region of Vidarbha has seen a small increase in the proportion of operated area cultivated through tenancy contracts.
+
+In Karnataka, yet another State with low levels of tenancy, incidence of tenancy declined in the coastal region, but increased slightly in all the inland regions.
+
+In Kerala, a State with a strong record of implementation of tenancy reform legislation, the extent of reported tenancy is very low. There has been a small rise in the incidence of tenancy since 1991--92.
+
+In Tamil Nadu, Cauvery delta and southern districts saw a rise in tenancy. Cauvery delta, in particular Thanjavur district, is a region which has historically had high levels of tenancy citep:marshallbouton,kathleengough2008.
+
+*** Land-class  and Caste Profile of Tenants and Lessors
+:PROPERTIES:
+:CUSTOM_ID: class
+:END:
+
+Data on distribution of tenants across categories of ownership and operational holding, and across social groups, suggest that resource poor, landless households, particularly belonging to Scheduled Castes and Muslims, are increasingly marginalised in the tenancy market. A disproportionate amount of land in many States is leased by households from middle and top deciles of ownership holding, by resource-rich landless households, and by households from social groups other than Scheduled Castes and Muslims. There are considerable variations in the class-profile of tenant households across States. Of all the States, Telangana, Andhra Pradesh, Gujarat, Punjab and Haryana lead in exclusion of resource poor and socially-marginalised households from tenancy markets. While medium and large landowners have come to account for a substantial share in the total land leased in, this is not necessarily a sign of increasing incidence of reverse tenancy.
+
+**** Classifying households across deciles (and quintiles) of ownership and operational holdings
+
+Data from NSSO-SLLH do not capture the class position of tenants very well because of lack of information on variables such as labour deployment, variations in productive potential of land and ownership of capital that are needed to appropriately identify the class status of sample households. The only limited possibility of examining class position of tenant households is through the use of the physical extent of land owned and operated to categorise households. Even this limited analysis using the physical extent of land is complicated because of under-reporting of landholdings by large landowners and cultivators.
+
+Given these limitations of data, we have chosen to use deciles (and quintiles) of ownership (and operational) holdings, rather than absolute size-classes of land holdings, to classify the households. Further, in view of the significant variations in productive potential of land across different regions, we have used the following method to create these deciles and quintiles.[fn:7]
+
+First, sample households belonging to each NSS region were separated and given a weighted percentile rank using the size of ownership holding of households in each NSS region. Then, sample households from all the regions were pooled, and the percentile rank of all landless households was changed to zero, thus moving all landless households to the bottom of the ranking. The landowning households were then ordered by their region-specific percentile rank.  Households having the same percentile rank were ordered according to absolute size of ownership holding.  The ranking thus achieved satisfied the following two principles: first, a household with some land anywhere in the country was ranked higher than a household with no land, and secondly, households ranked at n^{th} percentile level in different regions were all next to each other.[fn:8]  The households were then divided into ten equal (weighted) groups to create the deciles.  Since there was no normative way of ordering landless households, all ranked at the bottom, these were clubbed together in a separate category.
+
+We used a similar process at the State-level to divide households between State-level quintiles. We used quintiles for State-level analysis as sample observations for many States were too few to get reliable estimates for each decile. For the State-level quintiles, sample households were separated into different regions and given a weighted percentile rank using size of ownership holdings of sample households in the region. The landless households for the entire State were then moved to the bottom, and finally, the households thus ranked were divided into different weighted quintiles for the State.
+
+A similar procedure was also used to classify households across deciles and quintiles of household operational holdings.
+
+**** Land-class position of tenant households
+
+How are tenant households distributed across deciles and quintiles of ownership holdings? In which classes do we find an increase in incidence of leasing in? How does the land-class profile of tenants vary across States?
+
+#+NAME: owndecile_prop_india_hhd
+#+CAPTION: Proportion of tenants among all households and average area of leased-in land of tenant households, by deciles of ownership holding, India, 1991--92, 2002--03 and 2012--13 (per cent)
+#+begin_table*
+#+ATTR_LATEX: :environment tabularx :width 0.8\textwidth :center  :booktabs t :placement [htb]
+#+ATTR_LATEX: :align @{}l*{3}{S[table-format=3.1,round-precision=1]}*{3}{S[table-format=1.2,round-precision=2]}@{}
+#+RESULTS: owndecile_prop_india_hhd_code
+| Deciles        | <3colc>Proportion of tenants |                       |                       |        <3colc>Average area of |                       |                       |
+|                |            <3colc>(per cent) |                       |                       | <3colc>leased-in land (acres) |                       |                       |
+| <2cid4>        |                      <5cid7> |                       |                       |                               |                       |                       |
+|                |        {{{MCONE(1991--92)}}} | {{{MCONE(2002--03)}}} | {{{MCONE(2012--13)}}} |         {{{MCONE(1991--92)}}} | {{{MCONE(2002--03)}}} | {{{MCONE(2012--13)}}} |
+| <mid>          |                              |                       |                       |                               |                       |                       |
+| Landless       |                          6.8 |                   6.3 |                   9.7 |              2.67792612920664 |      1.30100572050996 |      1.16768820841005 |
+| D3             |                         13.2 |                   nil |                   nil |              1.50476995790871 |                   nil |                   nil |
+| D4             |                           13 |                  11.5 |                  18.2 |               1.6344547195788 |      1.17752786554554 |      1.13229034777787 |
+| D5             |                         10.2 |                   9.5 |                  10.7 |              2.29203328610254 |      1.21092559608872 |      1.09895611296657 |
+| D6             |                         11.5 |                  10.2 |                  10.7 |              1.90044563005533 |      1.32734929392393 |      1.18850518899296 |
+| D7             |                         10.8 |                  10.4 |                  12.4 |              2.18339635906912 |      1.33152047864697 |      1.56899637288236 |
+| D8             |                         10.9 |                   8.7 |                   9.7 |              2.57293950756882 |      1.74461151660359 |      1.72224492125384 |
+| D9             |                          9.4 |                   6.6 |                   9.6 |              2.61639975274897 |      2.14319010548979 |      1.58383036524804 |
+| D10            |                          6.5 |                   5.3 |                   6.6 |              4.52675983669221 |      4.86413281193957 |        3.219141115369 |
+| All households |                          9.3 |                     8 |                  10.3 |              2.43530565642888 |      1.63667557274593 |      1.42962700468622 |
+#+end_table*
+
+#+NAME: owndecile_distcombine_india_hhd
+#+CAPTION: Distribution of tenant households and area leased in across deciles of ownership holding, India, 1991--92, 2002--03 and 2012--13 (per cent)
+#+ATTR_LATEX: :float t :placement [hb]
+#+begin_table*
+#+begin_threeparttable
+#+ATTR_LATEX: :environment tabularx :width 0.8\textwidth :booktabs t :center
+#+ATTR_LATEX: :align @{}l*{6}{S[table-format=3.1,round-precision=1]}@{}
+#+RESULTS: owndecile_distcombine_india_hhd_code
+| Deciles | <3colc>Distribution of tenants |                       |                       | <3colc>Distribution of leased-in land |                       |                       |
+| <2cid4> |                        <5cid7> |                       |                       |                                       |                       |                       |
+|         |          {{{MCONE(1991--92)}}} | {{{MCONE(2002--03)}}} | {{{MCONE(2012--13)}}} |                 {{{MCONE(1991--92)}}} | {{{MCONE(2002--03)}}} | {{{MCONE(2012--13)}}} |
+| <mid>   |                                |                       |                       |                                       |                       |                       |
+| D1      |               7.26555354242117 |      7.88578841907502 |       9.4084720611047 |                       7.9893937021978 |      6.26847251513324 |       7.6846351173386 |
+| D2      |               7.26555354242117 |      7.88578841907502 |       9.4084720611047 |                       7.9893937021978 |      6.26847251513324 |       7.6846351173386 |
+| D3      |               7.74895122991285 |      7.88578841907502 |       9.4084720611047 |                      8.04092844927654 |      6.26847251513324 |       7.6846351173386 |
+| D4      |               14.0235761531761 |      13.0567629977187 |      13.9095747853185 |                      9.41191926706339 |      9.51639347512833 |      11.1218896280975 |
+| D5      |               10.9251751720508 |      11.8609109352219 |      10.3306918301913 |                      10.2824321393649 |      8.77552086898436 |      7.94121606597262 |
+| D6      |               12.3715987712726 |       12.722881491668 |      10.3884337480405 |                      9.65445580089535 |      10.3182989016633 |      8.63631378994945 |
+| D7      |               11.6200672126726 |      12.9908161342532 |      12.0050573174984 |                      10.4180813514358 |      10.5687028053304 |      13.1753886332988 |
+| D8      |               11.6881520113199 |      10.8687257977866 |      9.45219876940505 |                      12.3487201703025 |      11.5854996025951 |      11.3868871194572 |
+| D9      |               10.0770316046757 |      8.22941342410629 |      9.30368824670887 |                        10.82637940306 |      10.7762330655052 |      10.3072087374098 |
+| D10     |               7.01434076007701 |      6.61312396202013 |       6.3849391195234 |                      13.0382960142059 |      19.6539337353936 |      14.3771906737989 |
+| Total   |                            100 |                   100 |                   100 |                                   100 |                   100 |                   100 |
+#+attr_latex: :options [flushleft]
+#+begin_tablenotes
+#+begin_footnotesize
++ Note: :: Tenants not owning any land were proportionately divided among bottom deciles comprising landless households.
+#+end_footnotesize
+#+end_tablenotes
+#+end_threeparttable
+#+end_table*
+
+Table [[owndecile_prop_india_hhd]] shows the proportion of tenants among all households  in different deciles of ownership holdings. Table [[owndecile_distcombine_india_hhd]] shows the distribution of tenants and leased-in land across deciles of ownership holding. These tables show that the bottom deciles, comprising landless households, had disproportionately low access to tenancy. This is, by and large, true of all the three rounds of NSSO-SLLH. These tables also show that the proportion of households that leased in land in the top decile of ownership holdings was smaller than the proportion in the 4^{th}-9^{th} deciles. However, households in the top decile of ownership holding leased in large extents of land, and thus accounted for a disproportionately high share in the total area of land leased in. Table [[owndecile_prop_india_hhd]] also shows that, at the all India level, the proportion of tenants among households had increased in all the deciles of ownership holding between 2002--03 and 2012--13.
+
+These results are broadly consistent with findings of a number of other studies that have noted the entry of large, resource-rich tenants into the lease market (see, for example, citealp:vyas1970,csmurty2004,nadkarni1977,ravisrivastava1989,vkrvrmsandhra2010,jodha1981,sidhu2005production,kbdas1).
+
+#+NAME: ownquintile_prop_states_hhd
+#+CAPTION: Distribution of tenants across quintiles of ownership holding, by State, 2012--13 (per cent)
+#+ATTR_LATEX: :float t :placement [htb]
+#+begin_table*
+#+begin_threeparttable
+#+ATTR_LATEX: :environment tabularx :width 0.8\textwidth :booktabs t :center
+#+ATTR_LATEX: :align @{}l*{5}{S[table-format=2.1,round-precision=1]}{S[table-format=3.0,round-mode=off]}@{}
+#+RESULTS: ownquintile_prop_states_hhd_code
+| State            |  {{{MCONE(Q1)}}} |  {{{MCONE(Q2)}}} |  {{{MCONE(Q3)}}} |  {{{MCONE(Q4)}}} |  {{{MCONE(Q5)}}} | {{{MCONE(Total)}}} |
+|------------------+------------------+------------------+------------------+------------------+------------------+--------------------|
+| Himachal Pradesh |  27.905842141448 | 45.7704504105273 | 7.58927632957171 | 12.6026060012643 | 6.13182511718865 |                100 |
+| Punjab           | 5.00862433314104 | 5.00862433314104 | 4.50134485762601 | 40.2131904513182 | 45.2682160247737 |                100 |
+| Haryana          | 22.1586610476614 | 24.5134013746705 | 13.8196955853709 | 14.1249327978707 | 25.3833091944264 |                100 |
+| Uttarakhand      | 7.05507751279484 | 66.8556931430507 | 10.8278712346338 | 15.2613581095207 |                0 |                100 |
+| Uttar Pradesh    | 17.5820940286084 | 34.7713912150642 | 18.1896828310515 |  18.828172772409 | 10.6286591528668 |                100 |
+| Rajasthan        | 34.6748779330944 | 34.4701917814647 | 15.6453632573225 | 9.48830451709282 | 5.72126251102555 |                100 |
+| Madhya Pradesh   | 21.6033649002881 | 33.9867334375049 |  17.092210013584 | 11.2401736466587 | 16.0775180019644 |                100 |
+| Gujarat          | 8.75477124500362 | 40.9706448979586 |  23.790179687287 | 16.5211956394193 | 9.96320853033139 |                100 |
+| Maharashtra      | 14.5035796619168 | 17.6754100632205 | 35.4632388115835 | 21.4640382435101 | 10.8937332197692 |                100 |
+| Karnataka        | 10.7484373046137 | 8.84203948088255 | 16.7702035333642 | 38.8491859517393 | 24.7901337294003 |                100 |
+| Kerala           | 30.9848305184386 | 15.6482774990632 |  20.473841098847 | 17.5752078566572 |  15.317843026994 |                100 |
+| Tamil Nadu       | 7.59919901142463 | 7.59919901142463 | 26.4525363183928 | 45.7269577444359 | 12.6221079143221 |                100 |
+| Andhra Pradesh   | 18.1549236908498 | 18.1549236908498 | 16.0918411603312 | 34.3735160873814 | 13.2247953705877 |                100 |
+| Telangana        |  13.412416112787 |  13.412416112787 | 19.8705325436155 | 21.8035951806789 | 31.5010400501317 |                100 |
+| Chhattisgarh     | 24.9836074242351 | 20.7933547063588 | 29.4219115973843 | 12.5096962777843 | 12.2914299942375 |                100 |
+| Orissa           | 20.9804891169348 | 27.5101714978934 | 21.9355319365978 | 17.1567511488766 | 12.4170562996974 |                100 |
+| Jharkhand        | 9.37038554878995 |  46.952031319412 | 16.5405975182045 | 16.4201415028326 | 10.7168441107609 |                100 |
+| Bihar            | 15.3626434818472 | 15.3626434818472 | 26.2381048766213 | 20.5290770395675 | 22.5075311201169 |                100 |
+| West Bengal      | 16.8124253740236 | 16.8124253740236 | 34.1528845351291 | 13.6916450747349 | 18.5306196420888 |                100 |
+| Assam            | 40.6358628671781 | 28.4414194319029 | 20.4419904657014 | 7.15120056466372 | 3.32952667055382 |                100 |
+#+attr_latex: :options [flushleft]
+#+begin_tablenotes
+#+begin_footnotesize
++ Note: :: Tenants not owning any land were proportionately divided among bottom quintiles comprising landless households.
+#+end_footnotesize
+#+end_tablenotes
+#+end_threeparttable
+#+end_table*
+
+#+NAME: ownquintile_area_states_hhd
+#+CAPTION: Distribution of leased-in area across quintiles of ownership holding, by State, 2012--13 (per cent)
+#+ATTR_LATEX: :float t :placement [htb]
+#+begin_table*
+#+begin_threeparttable
+#+ATTR_LATEX: :environment tabularx :width 0.8\textwidth :booktabs t :center
+#+ATTR_LATEX: :align @{}l*{5}{S[table-format=2.1,round-precision=1]}{S[table-format=3.0,round-mode=off]}@{}
+#+RESULTS: ownquintile_area_states_hhd_code
+| State            |   {{{MCONE(Q1)}}} |  {{{MCONE(Q2)}}} |  {{{MCONE(Q3)}}} |  {{{MCONE(Q4)}}} |  {{{MCONE(Q5)}}} | {{{MCONE(Total)}}} |
+|------------------+-------------------+------------------+------------------+------------------+------------------+--------------------|
+| Himachal Pradesh |  42.7787386841162 |  27.031935662526 | 5.30964238733962 | 3.20832200651645 | 21.6713612595017 |                100 |
+| Punjab           |   1.4905927481554 |  1.4905927481554 | 4.84045741995374 | 34.7894253846174 |  57.388931699118 |                100 |
+| Haryana          |  8.24632415304138 | 43.5050812646302 | 16.9178697764089 |  15.594552231106 | 15.7361725748135 |                100 |
+| Uttarakhand      | 0.825819567164428 | 93.1890698172202 | 4.15501810731952 | 1.83009250829588 |                0 |                100 |
+| Uttar Pradesh    |  12.2868652585597 | 22.7183736366836 | 20.0164022527258 | 22.7768360844362 | 22.2015227675948 |                100 |
+| Rajasthan        |  29.5614485312604 |  18.834325892256 | 17.2403559906321 | 25.2071899364856 | 9.15667964936589 |                100 |
+| Madhya Pradesh   |  18.2971251127248 |  24.216000387257 | 11.9481718950181 | 13.0208578526616 | 32.5178447523386 |                100 |
+| Gujarat          |  6.87539080945844 |  43.035700041844 | 10.5715029444767 | 25.9858728890401 | 13.5315333151807 |                100 |
+| Maharashtra      |   13.821840092266 |  13.841730603082 | 28.4458336724754 | 21.6137452739901 | 22.2768503581865 |                100 |
+| Karnataka        |  6.65071470353539 |  4.9326949215047 | 11.5739408183824 |  38.226927553577 | 38.6157220030005 |                100 |
+| Kerala           |  13.0109117101151 | 11.2779530013086 | 15.3250247596115 | 25.3186297158142 | 35.0674808131505 |                100 |
+| Tamil Nadu       |  4.72537682822205 | 4.72537682822205 | 11.6231127141383 | 55.5954177199468 | 23.3307159094707 |                100 |
+| Andhra Pradesh   |  17.7141220851931 | 17.7141220851931 | 16.2787393265629 | 29.6581359718424 | 18.6348805312084 |                100 |
+| Telangana        |  10.2290469486571 | 10.2290469486571 |  22.229173124859 | 16.2801973506462 | 41.0325356271807 |                100 |
+| Chhattisgarh     |  25.8071392426694 | 14.7524967984524 | 22.0710105696577 | 14.6860685524478 | 22.6832848367727 |                100 |
+| Orissa           |  24.1622648258722 | 24.3574281006668 | 20.2053928142684 | 12.6662673215417 | 18.6086469376509 |                100 |
+| Jharkhand        |  10.0996827324134 | 27.2996728671012 | 14.0006329917935 | 13.9551513530295 | 34.6448600556625 |                100 |
+| Bihar            |  12.3106850466091 | 12.3106850466091 | 25.5857204277964 | 18.5172181463914 |  31.275691332594 |                100 |
+| West Bengal      |  14.7712452555953 | 14.7712452555953 | 33.5373205070242 | 16.9787611604739 | 19.9414278213112 |                100 |
+| Assam            |  31.0534732768184 | 25.8728092812344 |  29.060500902881 | 7.41564873129135 | 6.59756780777489 |                100 |
+#+attr_latex: :options [flushleft]
+#+begin_tablenotes
+#+begin_footnotesize
++ Note: :: Tenants not owning any land were proportionately divided among bottom quintiles comprising landless households.
+#+end_footnotesize
+#+end_tablenotes
+#+end_threeparttable
+#+end_table*
+
+#+NAME: ownquintile_averagearea_states
+#+CAPTION: Average area of land leased-in by tenant households, by quintiles of household ownership holding, by State, 2012--13 (acres)
+#+ATTR_LATEX: :environment tabularx :width \textwidth :booktabs t :center
+#+ATTR_LATEX: :align @{}l*{6}{S[table-format=1.3,round-precision=3]}@{}
+#+ATTR_LATEX: :float t :placement [htb]
+#+RESULTS: ownquintile_averagearea_states_code
+| State            | {{{MCONE(Landless)}}} | {{{MCONE(Q2)}}}   |   {{{MCONE(Q3)}}} |   {{{MCONE(Q4)}}} |   {{{MCONE(Q5)}}} | {{{MCONE(All households)}}} |
+|------------------+-----------------------+-------------------+-------------------+-------------------+-------------------+-----------------------------|
+| Himachal Pradesh |     0.721178768756065 | 0.211979068992236 |               nil |               nil |  1.66267176702834 |           0.470446336094127 |
+| Punjab           |                   nil | nil               |  6.42104142664418 |  3.71718878806743 |  5.44716655095666 |            4.29670852638327 |
+| Haryana          |                   nil | nil               |  5.62394783123233 |  5.07201584329243 |  2.84803257419635 |            4.59403270286523 |
+| Uttarakhand      |                   nil | nil               |               nil |               nil |               nil |            0.77272355873435 |
+| Uttar Pradesh    |     0.714666360572202 | 0.665371482092989 |  1.12536586166784 |  1.23713776501312 |  2.13617646479526 |            1.02266370520424 |
+| Rajasthan        |      1.26256164745465 | 1.6201195254261   |  3.26739208788827 |  7.87728383606433 |  4.74555291493629 |            2.96510908167386 |
+| Madhya Pradesh   |      2.49145565402769 | 1.93106947382158  |  2.05634010995227 |   3.4076758955947 |  5.94969158667822 |            2.94165478430349 |
+| Gujarat          |      2.01045458718896 | 2.79248321153339  |  1.13757671496559 |  4.02659098449479 |  3.47687816009612 |            2.56001011391147 |
+| Maharashtra      |      1.78086851725643 | nil               |  1.49893039610795 |  1.88174076022792 |  3.82136260088628 |            1.86870693301399 |
+| Karnataka        |                   nil | nil               |  1.80226045455969 |  2.56957974429136 |  4.06780306653149 |            2.61140739505906 |
+| Kerala           |     0.236638053533005 | nil               | 0.421820649493072 | 0.811831141799401 |  1.29012839194409 |           0.563541598490217 |
+| Tamil Nadu       |     0.956256730929144 | nil               |  0.61483339216969 |  1.86970274346019 |   2.8425103355195 |            1.53782131425888 |
+| Andhra Pradesh   |      2.38734305324036 | nil               |  2.85584894050004 |  2.11110346110657 |  3.44768259532059 |            2.44675015487716 |
+| Telangana        |      1.78923858316453 | nil               |  2.70229901436449 |  1.75174810617511 |  3.05593113982161 |            2.34606532973306 |
+| Chhattisgarh     |      2.06574471835112 | nil               |               nil |  2.34774388758974 |               nil |            1.99982472278989 |
+| Orissa           |     0.874345854343285 | 0.579172150871665 | 0.699327089035939 | 0.560498973223855 |  1.13777757468254 |           0.759208783352292 |
+| West Bengal      |     0.333849394553593 | nil               | 0.376683002134223 | 0.471209698113417 | 0.408912289032889 |           0.379982725557217 |
+| Assam            |     0.765019070790381 | 1.00666675733289  |  1.42315263002655 |  1.03810613226452 |  1.98368600666346 |            1.00108640905624 |
+| Bihar            |     0.710300880173048 | nil               | 0.921714488037063 | 0.799525652957983 |  1.23170057270231 |           0.886392523700088 |
+| Jharkhand        |                   nil | nil               |               nil |               nil |  1.05968752374641 |            0.32779771602086 |
+
+#+NAME: dist_puretenant_india_hhd
+#+CAPTION: Distribution of landless tenant households and area leased-in across deciles of operational holding, India, 1991--92, 2002--03 and 2012--13 (per cent)
+#+ATTR_LATEX: :float t :placement [htb]
+#+begin_table*
+#+ATTR_LATEX: :environment tabularx :width 0.9\textwidth :center  :booktabs t :placement [htb]
+#+ATTR_LATEX: :align @{}l*{3}{S[table-format=3.1,round-precision=1]}*{3}{S[table-format=1.2,round-precision=2]}@{}
+#+RESULTS: dist_puretenant_india_hhd_code0
+| Deciles | <3colc>Distribution of landless |                       |                       |  <3colc>Distribution of area of land |                       |                       |
+|         |                  <3colc>tenants |                       |                       | <3colc>leased-in by landless tenants |                       |                       |
+| <2cid4> |                         <5cid7> |                       |                       |                                      |                       |                       |
+|         |           {{{MCONE(1991--92)}}} | {{{MCONE(2002--03)}}} | {{{MCONE(2012--13)}}} |                {{{MCONE(1991--92)}}} | {{{MCONE(2002--03)}}} | {{{MCONE(2012--13)}}} |
+| <mid>   |                                 |                       |                       |                                      |                       |                       |
+| D1      |                               0 |                     0 |                     0 |                                    0 |                     0 |                     0 |
+| D2      |                               0 |                     0 |                     0 |                                    0 |                     0 |                     0 |
+| D3      |                4.31312448084561 |                     0 |                     0 |                    0.133625005102125 |                     0 |                     0 |
+| D4      |                17.6788430062359 |      15.5495889792427 |      13.5061319827245 |                     2.38046366292947 |      2.04115883850454 |      2.47058411090843 |
+| D5      |                19.0406344041843 |      16.1624009775984 |      14.6253658400387 |                     7.13700385038252 |      6.83165305805641 |      3.53443510296118 |
+| D6      |                 17.338824788296 |      17.5918090583733 |      17.0546472498895 |                     8.93299035133019 |      7.77126509457507 |      5.24055506839103 |
+| D7      |                16.5324432617513 |      18.5967832782873 |      15.3442118251736 |                     10.3902468062447 |      12.6760646227495 |      10.6726103881536 |
+| D8      |                  9.288387120903 |      14.3902204532636 |      15.6496553092891 |                     7.16319731682744 |      15.7263297967816 |       18.482010552048 |
+| D9      |                8.70368679329028 |      11.0979999650391 |      9.51819498667281 |                     18.0853570582857 |      21.0390347022382 |      15.1938281311992 |
+| D10     |                7.10405614449361 |      6.61119728819554 |      14.3017928062119 |                     45.7771159488979 |      33.9144938870948 |      44.4059766463386 |
+| Total   |                             100 |                   100 |                   100 |                                  100 |                   100 |                   100 |
+#+end_table*
+
+Tables [[ownquintile_prop_states_hhd]] and [[ownquintile_area_states_hhd]] show the distribution of tenant households and leased- in land across quintiles of ownership holding for different States. These tables show that the distributions of both tenant households and leased-in land varied considerably across States. In Himachal Pradesh, Haryana, Rajasthan, Kerala, Chhattisgarh, Orissa, Madhya Pradesh and Assam, the share of bottom quintile among tenants was more than 20 per cent. In all other States, the bottom quintiles had a disproportionately low share in distribution of tenant households. Only in Himachal Pradesh, Rajasthan, Orissa, Chhattisgarh and Assam, tenants in the bottom quintile had more than 20 per cent share in the total leased-in land. In Punjab, households in the top quintile of ownership holding accounted for 45 per cent of tenant households and 57 per cent of leased-in land. In contrast, only 2.8 per cent of landless households leased in land. In Karnataka, the top two quintiles of households accounted for about 64 per cent of tenants and 77 per cent of leased-in area. In Tamil Nadu, there were very few tenants in the bottom two quintiles of households. In Andhra Pradesh, Telangana, Orissa, West Bengal and Bihar, although the proportion of tenants among landless households was lower than the proportion among landowning households, a considerable proportion of households in all the deciles leased in land. Rajasthan, Chhattisgarh, Assam, Himachal Pradesh and Kerala stand out as States where proportion of tenants is higher among landless households than among landowning households.
+
+**** Tenants with no ownership holding
+
+Not only do large landowners lease in a substantial proportion of land, there are also other resource rich households that do not own any land but lease in substantial amounts of land. In fact, it is noteworthy that tenants who do not own any land are not all small peasants. A significant share of them are tenants with operational holdings in middle to top deciles. These resource rich households account for the bulk of land leased-in by households without any owned land.
+
+Table [[dist_puretenant_india_hhd]] shows that, over time, the proportion of landless tenants (tenants who did not own any land) whose operational holdings were in top two deciles of operational holding has increased. In 2012--13, about 24 per cent of landless tenants were in the top two deciles of operational holdings. These tenants, in the top two deciles of operational holding, accounted for 60 per cent of land leased-in by landless tenants. In contrast, bottom 45 per cent of landless tenants accounted for only 11 per cent of total land leased in by landless tenants.
+
+Table [[dist_puretenant_states_hhd0]] shows the distribution of landless tenants in 2012--13 in different States. In Gujarat, 61 per cent of landless tenants were in the top quintile of operational holdings. In Telangana and Andhra Pradesh, two States with very high level of incidence of tenancy, over 50 per cent of landless tenants were in the top quintile of operational holding.
+
+#+NAME: dist_puretenant_states_hhd0
+#+CAPTION: Distribution of landless tenants (tenants who did not own any land) across quintiles of operated area, by State, 2012--13 (per cent)
+#+ATTR_LATEX: :float t :placement [htb]
+#+begin_table*
+#+ATTR_LATEX: :environment tabularx :width 0.8\textwidth :center :booktabs t
+#+ATTR_LATEX: :align @{}l*{5}{S[table-format=2.1]}{S[table-format=3.0,round-mode=off]}@{}
+#+RESULTS: dist_puretenant_states_hhd_code0
+| State            | {{{MCONE(Q1)}}} | {{{MCONE(Q2)}}} | {{{MCONE(Q3)}}} | {{{MCONE(Q4)}}} | {{{MCONE(Q5)}}} | {{{MCONE(Total)}}} |
+|------------------+-----------------+-----------------+-----------------+-----------------+-----------------+--------------------|
+| Himachal Pradesh |               0 |            31.1 |             7.1 |            51.3 |            10.5 |                100 |
+| Punjab           |               0 |               0 |            23.7 |            70.8 |             5.5 |                100 |
+| Haryana          |               0 |            11.9 |              75 |             8.3 |             4.8 |                100 |
+| Uttarakhand      |               0 |            11.7 |            88.3 |               0 |               0 |                100 |
+| Uttar Pradesh    |               0 |            35.4 |              30 |            25.4 |             9.3 |                100 |
+| Rajasthan        |              25 |            47.7 |             8.5 |            15.7 |             3.1 |                100 |
+| Madhya Pradesh   |               0 |            24.7 |             3.2 |            53.3 |            18.8 |                100 |
+| Gujarat          |               0 |               0 |            32.4 |             6.2 |            61.4 |                100 |
+| Maharashtra      |               0 |            20.4 |            31.5 |            23.2 |            24.8 |                100 |
+| Karnataka        |               0 |             0.8 |             0.6 |            98.1 |             0.5 |                100 |
+| Kerala           |               0 |            29.5 |            45.4 |              22 |               3 |                100 |
+| Tamil Nadu       |               0 |               0 |            18.6 |            69.9 |            11.5 |                100 |
+| Andhra Pradesh   |               0 |               0 |            15.1 |            34.5 |            50.4 |                100 |
+| Telangana        |               0 |               0 |            31.4 |            15.6 |              53 |                100 |
+| Chhattisgarh     |               0 |            31.2 |            28.2 |            24.9 |            15.7 |                100 |
+| Orissa           |               0 |            11.6 |            44.3 |              29 |            15.1 |                100 |
+| Jharkhand        |               0 |               0 |            85.4 |            14.6 |               0 |                100 |
+| Bihar            |               0 |               0 |            40.7 |            41.5 |            17.8 |                100 |
+| West Bengal      |               0 |               7 |            44.7 |            27.3 |              21 |                100 |
+| Assam            |               0 |              63 |             6.1 |            18.5 |            12.3 |                100 |
+#+end_table*
+
+
+**** Caste and access to land in tenancy markets
+:PROPERTIES:
+:CUSTOM_ID: caste
+:END:
+
+There are sharp caste disparities in ownership of land across the country. Looking at the country as a whole, these disparities are not mitigated by agricultural tenancy to any substantial extent. Table [[castedisparity]] shows that, in 2012--13, dalits constituted about 20 per cent of all households but owned only about 9 per cent of land. Tenancy improved their access to operated land by only about 1 percentage point. In case of rural Muslims, even greater exclusion in access to land is faced as tenancy markets are hardly able to reduce any disparity in their operational holdings as compared to their ownership holdings.
+
+Table [[states_socgrp_accessindex]] shows the ratio of share in leased-in land to the share in number of households for different social groups. This index of access to land through tenancy markets shows that, at the all India level, Scheduled Caste, Scheduled Tribe and Muslim households have a disproportionately low access to land through tenancy markets. In particular, the share of rural Muslim households in leased-in land is about half their share in total number of households. At the State-level, dalit households have disproportionately low access to land for lease in all States other than Kerala, Andhra Pradesh, Rajasthan, Orissa, West Bengal and Assam. The index of access for dalits is particularly low (0.14) in Punjab, a State known for a very high population of dalits and the worst record of caste disparities. Scheduled Caste households in Haryana (0.23) and Gujarat (0.29) also have very poor access to land in tenancy markets. Adivasi households, particularly in areas that were recognised under the Fifth and Sixth Schedules of the Constitution, have historically been owners of land. However, they often do not have legal land titles and, with increasing land alienation, proportion of adivasi households that do not own any land has been rising citep:xaxacommittee,brindavikas2014. Data presented in Tables [[castedisparity]] and [[states_socgrp_accessindex]] show that adivasi households face a high degree of exclusion in access to land for lease in almost all the States.
+
+\FloatBarrier
+**** How widespread is reverse tenancy?
+
+#+NAME:castedisparity
+#+CAPTION: Distribution of all rural households, operated area and ownership holding, across social groups, India, 2012--13 (per cent)
+#+ATTR_LATEX: :float t
+#+begin_table*
+#+ATTR_LATEX: :environment tabularx :width 0.8\textwidth :booktabs t :center
+#+ATTR_LATEX: :align @{}X*{3}{S[table-format=3.1,round-precision=1]}@{}
+#+RESULTS: castedisparity-code
+| Social group     | {{{mcone(Households)}}} | {{{mcone(Operated area)}}} | {{{mcone(Ownership holding)}}} |
+|------------------+-------------------------+----------------------------+--------------------------------|
+| Scheduled Castes |                    20.2 |                       10.3 |                            9.3 |
+| Scheduled Tribes |                    11.9 |                       12.3 |                           12.7 |
+| Muslims          |                    10.8 |                        5.7 |                            5.6 |
+| Others           |                    57.1 |                       71.7 |                           72.4 |
+| <mid>            |                         |                            |                                |
+| Total            |                     100 |                        100 |                            100 |
+#+end_table*
+
+#+NAME: states_socgrp_accessindex
+#+CAPTION: Index of access to land for lease (ratio of share of leased-in land to share in number of households) for different social groups, by State, 2012--13
+#+ATTR_LATEX:  :float t
+#+begin_table*
+#+ATTR_LATEX: :environment tabularx :width \textwidth :center :booktabs t
+#+ATTR_LATEX: :align @{}l*{11}{S[table-format=1.2,round-precision=2]}@{}
+#+RESULTS: states_socgrp_accessindex_code
+| State            | {{{MCONE(Scheduled Castes)}}} | {{{MCONE(Scheduled Tribes)}}} | {{{MCONE(Muslims)}}} | {{{MCONE(Others)}}} |
+|------------------+-------------------------------+-------------------------------+----------------------+---------------------|
+| Himachal Pradesh |                          0.75 |                          0.51 |                    0 |                1.15 |
+| Punjab           |                          0.14 |                           nil |                    0 |                 1.6 |
+| Haryana          |                          0.23 |                           nil |                 0.24 |                1.24 |
+| Uttarakhand      |                           0.5 |                             0 |                    0 |                1.37 |
+| Uttar Pradesh    |                          0.67 |                          0.85 |                 0.46 |                1.25 |
+| Rajasthan        |                          1.04 |                          0.27 |                 1.24 |                1.16 |
+| Madhya Pradesh   |                          0.61 |                          0.71 |                 1.01 |                1.33 |
+| Gujarat          |                          0.29 |                          2.23 |                 0.26 |                0.66 |
+| Maharashtra      |                          0.39 |                          0.38 |                 0.79 |                1.27 |
+| Karnataka        |                          0.45 |                          0.86 |                 0.53 |                1.25 |
+| Kerala           |                          1.54 |                          0.33 |                 0.47 |                1.13 |
+| Tamil Nadu       |                          0.37 |                             0 |                 1.68 |                1.22 |
+| Andhra Pradesh   |                          1.19 |                          0.57 |                 1.15 |                0.98 |
+| Telangana        |                          0.77 |                          1.13 |                 0.78 |                1.11 |
+| Chhattisgarh     |                           0.4 |                          0.88 |                    0 |                1.28 |
+| Orissa           |                          1.36 |                          0.59 |                 0.88 |                1.08 |
+| Jharkhand        |                           0.3 |                          1.12 |                 1.16 |                0.99 |
+| Bihar            |                          0.92 |                          0.34 |                 1.17 |                1.02 |
+| West Bengal      |                          1.37 |                          0.88 |                 0.59 |                1.02 |
+| Assam            |                           1.2 |                          2.22 |                 0.88 |                0.62 |
+| <mid>            |                               |                               |                      |                     |
+| India            |                          0.88 |                          0.67 |                 0.53 |                 1.2 |
+#+end_table*
+
+#+NAME: states_socgrp_hhd
+#+CAPTION: Proportion of tenants among all households, by social group, by State, 2012--13 (per cent)
+#+ATTR_LATEX:  :float t
+#+begin_table*
+#+ATTR_LATEX: :environment tabularx :width \textwidth
+#+ATTR_LATEX: :align @{}l*{11}{S[table-format=2.1,round-precision=1]}@{}
+#+ATTR_LATEX: :center :booktabs t
+#+RESULTS: states_socgrp_hhd_code
+| State            | {{{MCONE(Scheduled Caste)}}} | {{{MCONE(Scheduled Tribe)}}} | {{{MCONE(Muslims)}}} | {{{MCONE(Others)}}} |
+|------------------+------------------------------+------------------------------+----------------------+---------------------|
+| Himachal Pradesh |                         14.4 |                          4.5 |                    0 |                 8.3 |
+| Punjab           |                          2.5 |                          nil |                    0 |                  17 |
+| Haryana          |                            3 |                          nil |                  2.8 |                 7.6 |
+| Uttarakhand      |                          8.8 |                            0 |                    0 |                 3.1 |
+| Uttar Pradesh    |                          8.1 |                         13.6 |                  4.9 |                10.8 |
+| Rajasthan        |                          3.7 |                          6.5 |                 19.3 |                   8 |
+| Madhya Pradesh   |                          3.9 |                          4.4 |                  3.3 |                 5.8 |
+| Gujarat          |                            1 |                         11.1 |                  0.5 |                 2.1 |
+| Maharashtra      |                          1.6 |                          1.1 |                  2.1 |                 3.8 |
+| Karnataka        |                          2.2 |                          3.2 |                    2 |                 5.7 |
+| Kerala           |                         14.8 |                          2.4 |                  4.1 |                   8 |
+| Tamil Nadu       |                          4.7 |                            0 |                 24.2 |                 7.6 |
+| Andhra Pradesh   |                         31.3 |                         19.7 |                 20.6 |                22.7 |
+| Telangana        |                         11.8 |                         17.5 |                  7.1 |                12.1 |
+| Chhattisgarh     |                            7 |                          6.7 |                    0 |                  12 |
+| Orissa           |                         29.4 |                         14.1 |                 15.3 |                15.1 |
+| Jharkhand        |                          1.2 |                          4.8 |                  5.2 |                 6.8 |
+| Bihar            |                         22.7 |                         13.4 |                 21.2 |                14.8 |
+| West Bengal      |                           19 |                         13.7 |                 17.7 |                16.6 |
+| Assam            |                          5.5 |                          8.4 |                  6.6 |                 5.6 |
+| <mid>            |                              |                              |                      |                     |
+| India            |                         11.6 |                          8.1 |                 10.8 |                10.3 |
+#+end_table*
+
+Does the evidence on land-class distribution of tenants point to an increasing incidence of reverse tenancy in India? Reverse tenancy refers to tenancy transactions in which small, resource-poor landowners lease out land to large, resource-rich cultivators. Although the term reverse tenancy was not yet in vogue, in one of the earliest discussions of reverse tenancy, citet:nadkarni1977 lucidly described the process as one in which, "members of the dominant class in rural society are entering into formal and informal lease agreements with the poor landholders for cultivation by the former, particularly in regions having the prospects of agricultural prosperity. Thus the small owners surrender their operational control over land -- if not ownership itself -- in favour of the dominant". The term reverse tenancy started to be used to describe such tenancy contracts from around 1980. In the Indian context, citet:vyas1970 and citet:nadkarni1977 were amongst the earliest commentators to argue that there is an increasing tendency of households from among dominant classes using tenancy to extend their operational control over land.
+
+In a number of empirical studies of tenancy that have followed, the increase in the proportion of large landowning households who lease in some land has been used to imply an increasing incidence of reverse tenancy in India. In one of the most widely cited study on reverse tenancy in India, citet:iqbalsingh1989, argued that reverse tenancy in central Punjab was on the rise despite the fact that most of the land in the primary data used in the paper was leased out by middle and large owners. Similarly, citet:deb2015 found that a substantial amount of land in ICRISAT survey villages was leased in by large farmers, and interpreted it as an evidence of reverse tenancy.  citet:hrsharma2010 used another flawed measure -- a greater increase in proportion of land leased out by marginal and small landowners than the increase in proportion of land leased in by the same category of landowners -- as an indicator of increasing incidence of reverse tenancy.[fn:9] In many other studies, increasing incidence of reverse tenancy in India has been more of an assumption than a finding (see, for example, citealp:ramakumartenancy2000,pramodkumar2006; and citealp:singh2002,sukhpalsingh2012). Despite the flimsy evidence, several  other scholars have cited some of these studies, often further mis-interpreting the evidence, and asserted that incidence of reverse tenancy has been on the rise, particularly in affluent States such as Punjab and Haryana (see, for example, citealp:parthasarthy1991,alpabarbara2011).
+
+In contrast, most primary data-based studies that have looked at the class-status of both lessors and tenants have come to very different conclusions. Sheila citet:sheilabhalla1983, in her detailed study of tenancy relations in Haryana, found that "small cultivators, in particular, have not chosen to lease out some or all of their land and to go to work as farm labourers". She found that, apart from the large landowners, land was also leased out by small landowners who were engaged in non-agricultural occupations outside the village. On the relative class-position of lessors and tenants, she wrote that, "in many cases, the tenant and the owners are social and economic equals, especially if the tenant is a man who owns some land in addition to the land he takes on rent" citep:sheilabhalla1983. citet:ijae41639 studied tenancy contracts in Mirzapur and Varanasi districts of Uttar Pradesh. The data presented by them showed that only 2.63 per cent of tenancy contracts in the sample from Mirzapur and 6.18 per cent of tenancy contracts in the sample from Varanasi involved a small landowner leasing out land to a middle or a large landowning tenant. citet:sharmadreze1996 noted that in Palanpur (UP), "there seems to be some tendency for people to refrain from entering into tenancy contracts with individuals who own either a lot more or a lot less land than themselves". While fixed rent tenancy has been found to have become more prevalent in Palanpur in recent times, reverse tenancy has not been found to be a significant phenomenon in more recent studies either citep:tyagi2011tenancy,tyagi2011change. In their study based on longitudinal surveys of 36 villages in Bihar, citet:alakhrodgers2015 noted that, while there had been a decline in the practice of landless households cultivating land on lease because of increased migration of workers from landless households, the incidence of reverse tenancy was small and had not increased. In PARI village studies, done in many different States of India since 2005-06, reverse tenancy was not found to be a dominant form of tenancy in any village citep:msvrrajasthan,vkrvrmsandhra2010,parikarnataka,rawaleconomic.
+
+Given this context, it is pertinent to ask, what do the NSSO-SLLH data show about prevalence of reverse tenancy in India?
+
+Before we deal with this question, we must reiterate some important limitations of NSSO-SLLH data. In NSSO-SLLH, no information is collected from tenants in the sample that could be used to identify the class status of lessors from whom they lease in land. Similarly, lessors in the sample are not asked information that could be used to identify class-status of their tenants. Given this, the information provided in NSSO-SLLH is inadequate to identify tenancy contracts in which a small landowner leases out land to a large cultivator. This is a major limitation in using NSS data to estimate the extent of reverse tenancy. Given this, the only possible way of using NSS data to examine whether reverse tenancy is prevalent in any substantial measure is through a comparison of the distribution of lessors and tenants. If the distribution of leased-in land shows a greater concentration of larger landowners than the distribution of leased-out land, one could argue that tenancy is resulting in a net transfer of land from the small landowners to large landowners. Such a comparison, however, must be preceded by the caution that the extent of leasing out reported by landowners suffers from much greater under-reporting than the reporting by tenants. In the 70th round survey, only 1220 sample households, out of a rural sample of 35604, reported having leased out any land. In comparison, 3696 households had leased in some land. The estimate of total leased out land for 2012--13 was only 2.2 million hectares; in comparison, the estimate for total leased in land was 9.3 million hectares. Since large landowners are more likely to under-report leasing out, the distribution of leased out land may be distorted to show less concentration of large landowners, and thus may falsely indicate the existence of reverse tenancy.
+
+#+NAME: outlease_owndecile_distcombine_india_hhd_code
+#+BEGIN_SRC R :results value :exports results :colnames no :hline yes
+
+     d44->d5
+     subset(d5,select=c("Year","state_region","district","state70","region_code","region_name","uniqueid","multiplier","agri_hhd_own","agri_hhd_area","agri_hhd_outlease","code_lease2","code_cul2","pure_tenant_agri","code_outlease"))->d5
+
+     subset(d5,d5$agri_hhd_own!=0)->d5
+
+     d5[order(d5$Year,d5$agri_hhd_own,d5$multiplier),]->d5
+     ave(d5$multiplier,d5$Year,d5$state_region,FUN=cumsum)/ave(d5$multiplier,d5$Year,d5$state_region,FUN=sum)->d5$percent_rank
+     d5[order(d5$Year,d5$percent_rank),]->d5
+     ave(d5$multiplier,d5$Year,FUN=cumsum)/ave(d5$multiplier,d5$Year,FUN=sum)->d5$percent_rank          #cumsum(d5$multiplier/sum(d5$multiplier))->d5$percent_rank
+
+            ifelse(d5$percent_rank<=0.1,"D1",
+                   ifelse(d5$percent_rank<=0.2,"D2",
+                         ifelse(d5$percent_rank<=0.3,"D3",
+                               ifelse(d5$percent_rank<=0.4,"D4",
+                                     ifelse(d5$percent_rank<=0.5,"D5",
+                                           ifelse(d5$percent_rank<=0.6,"D6",
+                                                 ifelse(d5$percent_rank<=0.7,"D7",
+                                                       ifelse(d5$percent_rank<=0.8,"D8",
+                                                       ifelse(d5$percent_rank<=0.9,"D9","D10")))))))))->d5$Deciles
+
+  d5$Deciles <- factor(d5$Deciles,levels=c("D1","D2","D3","D4","D5","D6","D7","D8","D9","D10","Total"))
+
+     d5$agri_hhd_outlease*d5$multiplier->d5$area_outlease
+     d5$code_outlease*d5$multiplier->d5$number_outlease
+
+     subset(d5,d5$Year!="1991")->d5
+     melt(d5,id=c("Year","Deciles"),m=c("number_outlease","area_outlease"))->d6
+     dcast(d6,Deciles~Year+variable,sum)->d6
+
+      (d6$"2002_number_outlease"*100)/sum(d6$"2002_number_outlease")->d6$"2002_number_outlease"
+     (d6$"2002_area_outlease"*100)/sum(d6$"2002_area_outlease")->d6$"2002_area_outlease"
+
+      (d6$"2012_number_outlease"*100)/sum(d6$"2012_number_outlease")->d6$"2012_number_outlease"
+     (d6$"2012_area_outlease"*100)/sum(d6$"2012_area_outlease")->d6$"2012_area_outlease"
+
+  newrow<-c("Total",100,100,100,100)
+  rbind(d6,newrow)->d8
+
+    names(d8)<-c("v0","v1","v2","v3","v4")
+
+     data.frame(v0=c("Deciles","<2cid3>","","<mid>"),v1=c("<2colc>Distribution of lessor households","<4cid5>","{{{MCONE(2002)}}}",""),v2=c("","","{{{MCONE(2012)}}}",""),v3=c("<2colc>Distribution of area leased out","","{{{MCONE(2002)}}}",""),v4=c("","","{{{MCONE(2012)}}}",""))->r2
+
+     as.data.frame(sapply(r2,as.character))->r2
+     as.data.frame(sapply(d8,as.character))->d8
+     rbind(r2,d8)->r3
+     r3
+
+#+END_SRC
+
+#+NAME: outlease_owndecile_distcombine_india_hhd
+#+CAPTION: Distribution of lessor households and area leased-out, across deciles of ownership holdings of landowning households, India, (per cent)
+#+ATTR_LATEX: :float t :placement [htb]
+#+begin_table*
+#+begin_threeparttable
+#+ATTR_LATEX: :environment tabularx :width 0.8\textwidth :center :booktabs t
+#+ATTR_LATEX: :align @{}l*{10}{S[table-format=2.1]}{S[table-format=3.0,round-mode=off]}@{}
+#+RESULTS: outlease_owndecile_distcombine_india_hhd_code
+| Deciles | <2colc>Distribution of lessor households |                   | <2colc>Distribution of area leased out |                    |
+| <2cid3> |                                  <4cid5> |                   |                                        |                    |
+|         |                        {{{mcone(2002)}}} | {{{mcone(2012)}}} |                      {{{mcone(2002)}}} |  {{{mcone(2012)}}} |
+| <mid>   |                                          |                   |                                        |                    |
+| D1      |                        0.948520932843429 | 0.033914245780671 |                       0.63968183296916 | 0.0205970011376452 |
+| D2      |                         3.93409172798065 |  0.45891288281176 |                       5.28065217547766 |   1.37768912387181 |
+| D3      |                         9.51999984831626 |  1.66195870972112 |                       6.78203877967163 |  0.992145845811299 |
+| D4      |                          8.9677576029693 |  3.35015722201913 |                       7.07982099437279 |   2.24956116842356 |
+| D5      |                         9.67510586238602 |  4.06234193485711 |                       6.91339694188524 |   2.14186989567186 |
+| D6      |                         8.75332231883213 |  3.86026129221244 |                       9.05311310193898 |   3.78112798799238 |
+| D7      |                         10.9394238138742 |  8.16414926370462 |                       17.3463056721864 |   12.4558202385091 |
+| D8      |                          14.636513873134 |  13.7511344110201 |                       7.91732932372737 |   6.36820277830339 |
+| D9      |                         14.6899478091968 |   19.796540919685 |                       17.1029755150292 |   15.9994506932679 |
+| D10     |                         17.9353162104671 |  44.8606291181881 |                       21.8846856627416 |    54.613535267011 |
+| Total   |                                      100 |               100 |                                    100 |                100 |
+#+attr_latex: :options [flushleft]
+#+end_threeparttable
+#+end_table*
+
+With these caveats, we present, in Table [[outlease_owndecile_distcombine_india_hhd]], the distribution of lessors of land across deciles of landowning households by the size of their ownership holdings. The table shows that the land is primarily leased out by large landowners, and the share of the top decile in total amount of land leased out increased from 22 per cent in 2002--03 to 55 per cent in 2012--13. In 2012--13, the bottom decile accounted for a mere 0.02 per cent of land leased out. The State-level analysis of distribution of lessors (Tables [[leaseout_ownquintile_prop_states_hhd]] and  [[leaseout_ownquintile_area_states_hhd]]) is only possible for a few States because of lack of adequate number of sample observations of lessors in many others. These tables show that, in all the States, households in the top quintiles dominated the supply of land for lease. In all States for which estimates could be made, lessors located in the top two quintiles of households accounted for over 80 per cent of the leased out land.  Even in Rajasthan, where 25 per cent of lessors were located in the second quintile, their share in total amount of land leased out was very small, and the proportion of lessor households in Q2 was much lower than the proportion of tenants in the bottom two quintiles (as seen in Table [[ownquintile_area_states_hhd]]).
+
+#+NAME: leaseout_ownquintile_prop_states_hhd_code
+#+BEGIN_SRC R :results value :exports results :colnames yes :hline yes
+
+   d44->d5
+    subset(d5,select=c("Year","state_region","district","state70","region_code","region_name","uniqueid","multiplier","agri_hhd_own","agri_hhd_area","agri_hhd_lease","code_lease2","code_cul2","pure_tenant_agri","code_outlease","agri_hhd_outlease"))->d5
+
+    d5[order(d5$Year,d5$agri_hhd_own,d5$multiplier),]->d5
+    ave(d5$multiplier,d5$Year,d5$state_region,FUN=cumsum)/ave(d5$multiplier,d5$Year,d5$state_region,FUN=sum)->d5$percent_rank
+    ifelse(d5$agri_hhd_own==0,0,d5$percent_rank)->d5$percent_rank
+    d5[order(d5$Year,d5$state70,d5$percent_rank),]->d5
+    ave(d5$multiplier,d5$Year,d5$state70,FUN=cumsum)/ave(d5$multiplier,d5$Year,d5$state70,FUN=sum)->d5$percent_rank          #cumsum(d5$multiplier/sum(d5$multiplier))->d5$percent_rank
+
+           ifelse(d5$percent_rank<=0.2,"Q1",
+                  ifelse(d5$percent_rank<=0.4,"Q2",
+                        ifelse(d5$percent_rank<=0.6,"Q3",
+                              ifelse(d5$percent_rank<=0.8,"Q4","Q5"))))->d5$Deciles
+
+    ifelse(d5$agri_hhd_own==0,"Landless",d5$Deciles)->d5$Deciles
+
+    d5$agri_hhd_area*d5$multiplier->d5$area_agri
+    d5$agri_hhd_outlease*d5$multiplier->d5$area_outlease
+    d5$code_outlease*d5$multiplier->d5$number_outlease
+
+    subset(d5,Year==2012)->d5
+
+  subset(d5,state70!="Himachal Pradesh"&state70!="Haryana"&state70!="Uttarakhand"&state70!="Gujarat"&state70!="Maharashtra"&state70!="Karnataka"&state70!="Tamil Nadu"&state70!="Telangana"&state70!="Jharkhand"&state70!="Chhattisgarh"&state70!="Jammu and Kashmir"&state70!="Goa"&state70!="Sikkim"&state70!="Meghalaya"&state70!="Mizoram"&state70!="Manipur"&state70!="Nagaland"&state70!="Arunachal Pradesh"&state70!="Tripura"&state70!="Union Territories")->d5
+
+    melt(d5,id=c("state70","Deciles"),m=c("number_outlease","multiplier"))->d6
+    dcast(d6,state70+variable~Deciles,sum, margins=c("Deciles"))->d6.1
+    d6.1[,c(3:9)]*100/d6.1[,9]->d6.1[,c(3:9)]
+    names(d6.1)[names(d6.1)=="variable"]<-"var1"
+    melt(d6.1,id=c("state70","var1"))->d6.1
+    dcast(d6.1,state70+variable~var1,sum)->d6.1
+    factor(d6.1$variable,levels=c("Landless","Q1","Q2","Q3","Q4","Q5","(all)"))->d6.1$variable
+    d6.1[order(d6.1$state70,d6.1$variable),]->d6.1
+
+   factor(d6.1$state70)->d6.1$state70
+    data.frame(State="India",Q1=100,Q2=100,Q3=100,Q4=100,Q5=100,stringsAsFactors=FALSE)->t
+
+    for (i in c(1:10))
+    {
+        subset(d6.1,as.numeric(state70)==i)->d6.2
+        as.numeric(d6.2$variable[round(d6.2$multiplier)<19&d6.2$multiplier!=0])->num
+        num[num!=1]->num
+        #ifelse(num==2,2,num-2)->num2
+        c(levels(d6.1$state70)[i],rep(d6.2$number_outlease[1]*20/d6.2$multiplier[1],num-2),d6.2$number_outlease[1]-(d6.2$number_outlease[1]*20/d6.2$multiplier[1])*(num-2)+d6.2$number_outlease[num],d6.2$number_outlease[(num+1):6])->newrow
+        rbind(t,newrow)->t
+        }
+
+    subset(t,State!="India")->t
+    t$Total<-c(rep(100,nrow(t)))
+
+   names(t)<-c("State","{{{MCONE(Q1)}}}","{{{MCONE(Q2)}}}","{{{MCONE(Q3)}}}","{{{MCONE(Q4)}}}","{{{MCONE(Q5)}}}","{{{MCONE(Total)}}}")
+  factor(t$State,levels=c("Punjab","Uttar Pradesh","Rajasthan","Madhya Pradesh","Kerala","Andhra Pradesh","Orissa","Bihar","West Bengal","Assam"))->t$State
+  t[order(t$State),]->t
+t
+#+END_SRC
+
+#+NAME: leaseout_ownquintile_prop_states_hhd
+#+CAPTION: Distribution of lessor households, across quintiles of households by ownership holding, selected States, 2012--13 (per cent)
+#+ATTR_LATEX: :float t :placement [htb]
+#+begin_table*
+#+begin_threeparttable
+#+ATTR_LATEX: :environment tabularx :width 0.8\textwidth :center :booktabs t
+#+ATTR_LATEX: :align @{}l*{5}{S[table-format=2.1]}{S[table-format=3.0,round-mode=off]}@{}
+#+RESULTS: leaseout_ownquintile_prop_states_hhd_code
+| State          | {{{MCONE(Q1)}}} |  {{{MCONE(Q2)}}} |  {{{MCONE(Q3)}}} |  {{{MCONE(Q4)}}} |  {{{MCONE(Q5)}}} | {{{MCONE(Total)}}} |
+|----------------+-----------------+------------------+------------------+------------------+------------------+--------------------|
+| Punjab         |               0 |                0 |                0 | 34.5900929364739 | 65.4099070635261 |                100 |
+| Uttar Pradesh  |               0 | 7.05512891644656 | 11.3524183162672 | 24.9170172336785 | 56.6754355336077 |                100 |
+| Rajasthan      |               0 | 25.0342025269872 | 7.83810322165391 | 39.8443213453285 | 27.2833729060304 |                100 |
+| Madhya Pradesh |               0 | 4.08467959070994 | 27.8976902918475 | 24.8210125419803 | 43.1966175754623 |                100 |
+| Kerala         |               0 | 2.88908016634654 |                0 | 26.9940698120722 | 70.1168500215813 |                100 |
+| Andhra Pradesh |               0 |                0 |                0 | 29.4071880606676 | 70.5928119393324 |                100 |
+| Orissa         |               0 | 8.28210065307913 | 28.0428319483689 |  13.534579308331 | 50.1404880902209 |                100 |
+| Bihar          |               0 |                0 | 1.55278970870693 | 82.9238412346261 | 15.5233690566669 |                100 |
+| West Bengal    |               0 |                0 | 14.1573253360518 | 37.5026833255746 | 48.3399913383737 |                100 |
+| Assam          |               0 |                0 | 41.5203249560928 | 17.2420605739466 | 41.2376144699606 |                100 |
+#+attr_latex: :options [flushleft]
+#+begin_tablenotes
+#+begin_footnotesize
+\setlength\labelsep{0pt}
+\item[] \textit{Note}: Data are presented only for the  States for which the sample included a substantial number of lessor households.
+#+end_footnotesize
+#+end_tablenotes
+#+end_threeparttable
+#+end_table*
+
+In other words, these data do not support the possibility of a large-scale prevalence of reverse tenancy in India. In fact, NSSO-SLLH data are consistent with the conclusion that most tenancy contracts in India are either between large landowning lessors and poor tenants, or, lateral tenancy contracts, in which land is leased out by a household to another with a similar socio-economic status.[fn:10] The clearest example of dominance of lateral tenancy is seen in Punjab, where land is primarily owned by medium to large landowners belonging to Jat Sikh community, while landless households, mostly dalits, are excluded from tenancy markets as well. Data on tenancy in Punjab shows that the tenancy transactions take place only among the top few deciles of landowning, non-dalit households.
+
+#+NAME: leaseout_ownquintile_area_states_hhd_code
+#+BEGIN_SRC R :results value :exports results :colnames yes :hline yes
+
+  d44->d5
+  subset(d5,select=c("Year","state_region","district","state70","region_code","region_name","uniqueid","multiplier","agri_hhd_own","agri_hhd_area","agri_hhd_lease","code_lease2","code_cul2","pure_tenant_agri","agri_hhd_outlease","code_outlease"))->d5
+
+  d5[order(d5$Year,d5$agri_hhd_own,d5$multiplier),]->d5
+  ave(d5$multiplier,d5$Year,d5$state_region,FUN=cumsum)/ave(d5$multiplier,d5$Year,d5$state_region,FUN=sum)->d5$percent_rank
+  ifelse(d5$agri_hhd_own==0,0,d5$percent_rank)->d5$percent_rank
+  d5[order(d5$Year,d5$state70,d5$percent_rank),]->d5
+  ave(d5$multiplier,d5$Year,d5$state70,FUN=cumsum)/ave(d5$multiplier,d5$Year,d5$state70,FUN=sum)->d5$percent_rank          #cumsum(d5$multiplier/sum(d5$multiplier))->d5$percent_rank
+
+         ifelse(d5$percent_rank<=0.2,"Q1",
+                ifelse(d5$percent_rank<=0.4,"Q2",
+                      ifelse(d5$percent_rank<=0.6,"Q3",
+                            ifelse(d5$percent_rank<=0.8,"Q4","Q5"))))->d5$Deciles
+
+  ifelse(d5$agri_hhd_own==0,"Landless",d5$Deciles)->d5$Deciles
+
+  d5$agri_hhd_area*d5$multiplier->d5$area_agri
+  d5$agri_hhd_outlease*d5$multiplier->d5$area_outlease
+  d5$code_outlease*d5$multiplier->d5$number_outlease
+
+  subset(d5,Year==2012)->d5
+
+  subset(d5,state70!="Himachal Pradesh"&state70!="Haryana"&state70!="Uttarakhand"&state70!="Gujarat"&state70!="Maharashtra"&state70!="Karnataka"&state70!="Tamil Nadu"&state70!="Telangana"&state70!="Jharkhand"&state70!="Chhattisgarh"&state70!="Jammu and Kashmir"&state70!="Goa"&state70!="Sikkim"&state70!="Meghalaya"&state70!="Mizoram"&state70!="Manipur"&state70!="Nagaland"&state70!="Arunachal Pradesh"&state70!="Tripura"&state70!="Union Territories")->d5
+
+  melt(d5,id=c("state70","Deciles"),m=c("area_outlease","multiplier"))->d6
+  dcast(d6,state70+variable~Deciles,sum, margins=c("Deciles"))->d6.1
+  d6.1[,c(3:9)]*100/d6.1[,9]->d6.1[,c(3:9)]
+  names(d6.1)[names(d6.1)=="variable"]<-"var1"
+  melt(d6.1,id=c("state70","var1"))->d6.1
+  dcast(d6.1,state70+variable~var1,sum)->d6.1
+  factor(d6.1$variable,levels=c("Landless","Q1","Q2","Q3","Q4","Q5","(all)"))->d6.1$variable
+  d6.1[order(d6.1$state70,d6.1$variable),]->d6.1
+  factor(d6.1$state70)->d6.1$state70
+  data.frame(State="India",Q1=100,Q2=100,Q3=100,Q4=100,Q5=100,stringsAsFactors=FALSE)->t
+
+  for (i in c(1:10))
+  {
+      subset(d6.1,as.numeric(state70)==i)->d6.2
+      as.numeric(d6.2$variable[round(d6.2$multiplier)<19&d6.2$multiplier!=0])->num
+      num[num!=1]->num
+      c(levels(d6.1$state70)[i],rep(d6.2$area_outlease[1]*20/d6.2$multiplier[1],num-2),d6.2$area_outlease[1]-(d6.2$area_outlease[1]*20/d6.2$multiplier[1])*(num-2)+d6.2$area_outlease[num],d6.2$area_outlease[(num+1):6])->newrow
+      rbind(t,newrow)->t
+      }
+
+  subset(t,State!="India")->t
+  t$Total<-c(rep(100,nrow(t)))
+  names(t)<-c("State","{{{MCONE(Q1)}}}","{{{MCONE(Q2)}}}","{{{MCONE(Q3)}}}","{{{MCONE(Q4)}}}","{{{MCONE(Q5)}}}","{{{MCONE(Total)}}}")
+factor(t$State,levels=c("Punjab","Uttar Pradesh","Rajasthan","Madhya Pradesh","Kerala","Andhra Pradesh","Orissa","Bihar","West Bengal","Assam"))->t$State
+  t[order(t$State),]->t
+  t
+#+END_SRC
+
+#+NAME: leaseout_ownquintile_area_states_hhd
+#+CAPTION: Distribution of area leased out, across quintiles of households by ownership holding, selected State, 2012--13 (per cent)
+#+ATTR_LATEX:  :float t :placement [htb]
+#+begin_table*
+#+begin_threeparttable
+#+ATTR_LATEX: :environment tabularx :width 0.8\textwidth :center :booktabs t
+#+ATTR_LATEX: :align @{}l*{5}{S[table-format=2.1]}{S[table-format=3.0,round-mode=off]}@{}
+#+RESULTS: leaseout_ownquintile_area_states_hhd_code
+| State          | {{{MCONE(Q1)}}} |    {{{MCONE(Q2)}}} |   {{{MCONE(Q3)}}} |  {{{MCONE(Q4)}}} |  {{{MCONE(Q5)}}} | {{{MCONE(Total)}}} |
+|----------------+-----------------+--------------------+-------------------+------------------+------------------+--------------------|
+| Punjab         |               0 |                  0 |                 0 | 17.7668462776921 | 82.2331537223079 |                100 |
+| Uttar Pradesh  |               0 |    1.0362208792345 |  1.94501557957992 | 17.6821300540716 |  79.336633487114 |                100 |
+| Rajasthan      |               0 |   3.07276228727848 |  1.08467534715523 | 22.9508604996883 |  72.891701865878 |                100 |
+| Madhya Pradesh |               0 |   0.86531336518193 |   10.534905011519 | 13.3521145823344 | 75.2476670409647 |                100 |
+| Kerala         |               0 | 0.0234168362998132 |                 0 | 5.31091932483145 | 94.6656638388687 |                100 |
+| Andhra Pradesh |               0 |                  0 |                 0 | 16.3598257565618 | 83.6401742434382 |                100 |
+| Orissa         |               0 |  0.394602897767573 |   7.2616099062924 |  6.3973320087079 | 85.9464551872321 |                100 |
+| Bihar          |               0 |                  0 | 0.131246422730514 | 54.1669647457155 | 45.7017888315539 |                100 |
+| West Bengal    |               0 |                  0 |  2.96467309231851 | 18.1718326723185 |  78.863494235363 |                100 |
+| Assam          |               0 |                  0 |  20.5402410249362 |   5.713240400655 | 73.7465185744088 |                100 |
+#+attr_latex: :options [flushleft]
+#+begin_tablenotes
+#+begin_footnotesize
+\setlength\labelsep{0pt}
+\item[] \textit{Note}: Data are presented only for the  States for which the sample included a substantial number of lessor households.
+#+end_footnotesize
+#+end_tablenotes
+#+end_threeparttable
+#+end_table*
+
+*** Increase in Incidence of Fixed-rent Tenancy
+:PROPERTIES:
+:CUSTOM_ID: contracttype
+:END:
+
+Another trend that stands out clearly in the data from the last two rounds is the increase in fixed-rent tenancy, and within that, of rental payments paid in money.  The share of land cultivated on fixed rent in total leased-in land increased from about 47 per cent in 2002--03 to 55 per cent in 2012--13 (Table [[ind0_leaseterm_area]]). For the first time, in the survey for 2012--13, fixed rental payments in money was found to be the single most important category of types of tenancy contracts, and accounted for about 40 per cent of leased-in land.
+
+Questions related to terms of tenancy, and the categories in which tenancy contracts were classified, have changed over different rounds of NSS surveys. Although NSSO landholding surveys in the 1950s collected some information on the level of rents citep:nssreport59, questions on rent were dropped from the schedule in the 17^{th} round (1961-62) and no information on rent has been collected in any round after that. In the surveys prior to 2002--03, a substantial part of the leased-in land was categorised under "other" or "unspecified" contracts. An examination of the unit-level data from the 1991--92 survey, the earliest round of NSSO-SLLH for which the unit-level data are available, showed that the field on type of contract had been left blank for many plots that were operated on lease contracts. There is no way of determining whether these fields were left blank because none of the specified category was found suitable, or because the question was not properly canvassed. Assuming that the share tenancy and fixed rent contracts were correctly identified wherever applicable, data from NSSO-SLLH until 1991 show that the share of fixed rent tenancy contracts, and in particular of fixed rent paid in money, has been rising since 1971--72. Over the last two rounds of NSSO-SLLH, the data on terms of contracts are better categorised and only a small part of observations were categorised as others or unspecified. Data from these two surveys show a continued increase in the share of fixed rent contracts, and within that of rents paid in money. In 2012--13, over 55 per cent of land was leased on fixed rent contracts, and for the first time, the share of land leased on fixed money contracts (39.9 per cent) was higher than the share of land under sharecropping contracts (30.8 per cent). Table [[states_leaseterm]] shows that, in 2012--13, fixed money rent was the dominant type of contract in Punjab, Haryana, Maharashtra, Tamil Nadu, Andhra Pradesh and Telangana. In Punjab, about 90 per cent of the leased-in land was under fixed money contracts. On the other hand, sharecropping was the dominant type of contract in Uttar Pradesh, Karnataka and Orissa. In West Bengal, Rajasthan and Jharkhand, over 40 per cent of the leased-in land was under sharecropping contracts.
+
+The rise of fixed rent tenancy has been argued to be a result of, on the one hand, increasing access to irrigation, improved productivity and a reduction in uncertainty of production, and on the other, increased demand for leasing land because of increasing landlessness, lack of availability of decent non-agricultural employment and entry of large landowners in tenancy market. Fixed money rents are typically paid in advance and, therefore, are particularly favourable for richer tenants. However, if increasing landlessness, lack of mobility among workers, and entry of rich tenants into the tenancy market increase the competition for leasing in land, credit-constrained poor landless households may also be forced to accept fixed rent and other kinds of highly exploitative contracts citep:rawaleconomic.
+
+#+NAME: ind0_leaseterm_area
+#+CAPTION: Distribution of total leased-in area under various terms of lease, India, 1961--62, 1971--72, 1982, 1991--92, 2002--03 and 2012--13 (per cent)
+#+ATTR_LATEX: :float t
+#+begin_table*
+#+begin_threeparttable
+#+ATTR_LATEX: :environment tabularx :width 0.9\textwidth
+#+ATTR_LATEX: :align @{}l*{5}{S[table-format=2.1,round-precision=1]}@{}
+#+ATTR_LATEX: :center :booktabs t
+#+RESULTS: ind0_leaseterm_area_code
+|     Year |        <3colc>Fixed rent |                            |                    | {{{MCONE(Produce)}}} |  {{{MCONE(Others and)}}} |
+|  <2cid4> |                          |                            |                    |                      |                          |
+|          | {{{MCONE(Fixed money)}}} | {{{MCONE(Fixed produce)}}} | {{{MCONE(Total)}}} |   {{{MCONE(share)}}} | {{{MCONE(unspecified)}}} |
+|----------+--------------------------+----------------------------+--------------------+----------------------+--------------------------|
+| 1961--62 |                    25.61 |                       12.9 |              38.51 |                39.15 |                    22.34 |
+| 1971--72 |                    15.42 |                      11.64 |              27.06 |                47.86 |                    25.08 |
+|     1982 |                    10.86 |                       6.27 |              17.13 |                44.71 |                    38.16 |
+| 1991--92 |                     19.0 |                       14.5 |               33.5 |                 34.4 |                     32.1 |
+| 2002--03 |                     28.9 |                       18.6 |               47.5 |                 40.7 |                     11.8 |
+| 2012--13 |                     39.9 |                       15.2 |               55.1 |                 30.8 |                     14.1 |
+#+attr_latex: :options [flushleft]
+#+begin_tablenotes
+\setlength\labelsep{0pt}
+ \item[] \footnotesize Sources: \footnotesize \citet{nssreport_331} for 1971--62, 1971--72 and 1982; \citet{nss48_landreport} for 1991--92; and computed using unit-level data for 2002--03 and 2012--13.
+#+end_tablenotes
+#+end_threeparttable
+#+end_table*
+
+#+NAME: ind1_leaseterm_area
+#+CAPTION: Distribution of total leased-in area under various terms of lease, India, 2002--03 and 2012--13 (per cent)
+#+ATTR_LATEX: :environment tabularx :width 0.6\textwidth :center :booktabs t :float t :placement [htb]
+#+ATTR_LATEX: :align @{}l*{2}{S[table-format=3.1,round-precision=1]}@{}
+#+RESULTS: ind1_leaseterm_area_code
+| Terms of lease     | {{{mcone(2002--03)}}} | {{{mcone(2012--13)}}} |
+|--------------------+-----------------------+-----------------------|
+| Fixed rent         |                  47.5 |                  55.1 |
+| (i) Fixed money    |                  28.9 |                  39.9 |
+| (ii) Fixed produce |                  18.6 |                  15.2 |
+| Produce share      |                  40.7 |                  30.8 |
+| Service contract   |                   0.2 |                   0.2 |
+| Usufruct Mortgage  |                   0.7 |                   0.3 |
+| Relatives          |                   3.3 |                     7 |
+| Other              |                   7.7 |                   6.6 |
+| Total              |                   100 |                   100 |
+
+*** Concluding Remarks
+
+Large-scale statistics on land relations in rural India are fraught with many problems. Poor statistics produced by official agencies give a very distorted picture of production relations in the Indian countryside: one in which very few households lack access to land; most households cultivate their own, tiny holdings; very few households lease in or lease out land; and there are few households with large holdings.
+
+Studies based on a careful examination of large-scale data over the last two decades, in addition to a large body of primary field-based research, have helped dispel some of these misconceptions. In terms of ownership of productive land, the NSS data show that the level of landlessness among rural households is over 40 per cent  citep:epwland2008. More recently, the Socio Economic Caste Census, 2011, recorded that 56 per cent of rural households did not own any land.[fn:11] The 4^{th} National Family Health Survey recorded that over 47 per cent of rural households did not own any agricultural land in 2015--16 citep:nfhs4india. Despite a high degree of under-reporting by owners of large landholdings and other wealth, land and asset inequality in rural India have been found to be  very high and increasing citep:nssland2013,sserwp1701,ishananjana2016,subramanian2006,jayadev2007. Data have also been used to show persistent exclusion of Dalits and Muslims in ownership and access to land citep:thorat2009dalits,sacharcommittee,ishan2016,aparajita2008,vrdalitassets.
+
+#+NAME: states_leaseterm
+#+CAPTION: Share of land leased under different types of contracts in total leased-in area, by State, 2012--13 (per cent)
+#+ATTR_LATEX: :float t :placement [htb]
+#+begin_table*
+#+ATTR_LATEX: :environment tabularx :width 0.8\textwidth :center :booktabs t
+#+ATTR_LATEX: :align @{}l*{4}{S[table-format=2.1,round-precision=1]}@{}
+#+RESULTS: states_leaseterm_code
+| State            | {{{MCONE(Fixed money)}}} | {{{MCONE(Fixed produce)}}} | {{{MCONE(Produce share)}}} | {{{MCONE(Others)}}} |
+|------------------+--------------------------+----------------------------+----------------------------+---------------------|
+| Himachal Pradesh |                     30.5 |                          2 |                        8.4 |                59.1 |
+| Punjab           |                     89.7 |                        1.1 |                        1.9 |                 7.3 |
+| Haryana          |                     75.4 |                          8 |                        1.9 |                14.7 |
+| Uttarakhand      |                        6 |                         43 |                        0.6 |                50.4 |
+| Uttar Pradesh    |                       25 |                         11 |                       50.8 |                13.2 |
+| Rajasthan        |                     29.6 |                        5.9 |                       41.7 |                22.9 |
+| Madhya Pradesh   |                     15.4 |                         10 |                       40.5 |                34.2 |
+| Gujarat          |                     23.7 |                          0 |                       49.5 |                26.8 |
+| Maharashtra      |                     55.6 |                        1.7 |                       26.9 |                15.9 |
+| Karnataka        |                     19.7 |                        9.9 |                       59.7 |                10.7 |
+| Kerala           |                     39.3 |                       11.3 |                        7.9 |                41.5 |
+| Tamil Nadu       |                     62.9 |                        7.9 |                        6.1 |                23.2 |
+| Andhra Pradesh   |                     55.2 |                         23 |                       15.9 |                 5.9 |
+| Telangana        |                       61 |                        5.9 |                       29.8 |                 3.4 |
+| Chhattisgarh     |                      4.7 |                       51.3 |                       19.6 |                24.3 |
+| Orissa           |                      6.4 |                       22.5 |                       56.1 |                  15 |
+| Jharkhand        |                     12.8 |                       19.2 |                       41.2 |                26.8 |
+| Bihar            |                     27.9 |                       31.5 |                         34 |                 6.6 |
+| West Bengal      |                     30.2 |                       13.8 |                       40.8 |                15.1 |
+| Assam            |                     17.6 |                       10.2 |                       58.7 |                13.6 |
+#+end_table*
+
+As a contribution to this larger body of scholarly work on land relations in India, this paper presents an analysis of incidence of tenancy since 1991--92 using data from the NSSO's Surveys of Land and Livestock Holdings. The present study involved a household-by-household review of data from three rounds of NSSO-SLLH to correct inconsistencies to the extent possible.
+
+NSSO's Surveys of Land and Livestock Holdings are arguably the most important exercise in collecting data on land relations in India. There are, however, serious limitations of these surveys and it seems the NSSO has been conducting these every ten years without any serious consideration of what is being produced and how useful are the data. NSSO has been tinkering with the survey schedule in every round without any consideration as to why the survey data are hardly used by anybody.
+
+While the survey leaves out some crucial aspects of information, considerable resources are wasted on capturing relatively minor aspects in great detail. The survey does not collect any information on land transactions or on rent. Despite the survey comprising two visits to sample households, no data are collected on investment, land improvement activities undertaken, production, labour deployment or input use. In fact, the Survey of Land and Livestock Holdings is conducted along with All-India Debt and Investment Survey (Schedule 18.2) and Situational Assessment Survey of Agricultural Households (Schedule 33), with each schedule canvassed on a separate sample of households. Data on landholdings are scattered across the three schedules. While detailed data on size of landholdings and tenurial status are collected through Schedule 18.1, data on land transactions and land values are in Schedule 18.2, and data on input use and production are in Schedule 33. NSSO needs to seriously consider the possibility of bringing together data on landholdings for rural households into a single survey schedule so that correlations between different aspects could be studied. In different blocks in all the three schedules, format and questions used to solicit information from respondents are poorly designed, resulting in imprecise and poor data. All these problems call for a thorough review of NSSO's overall strategy to collect data on agrarian relations, and in particular of the Schedules 18.1, 18.2 and 33.
+
+The most important findings of this paper can be summarised as follows.
+
+At the all-India level, there was a substantial increase in the incidence of agricutlural tenancy between 2002-03 and 2012--13. The proportion of tenants among rural households as well as the proportion of land that is cultivated on tenancy contracts increased significantly over this period. In 2012--13, over 11 per cent of operated area was cultivated under tenancy, highest ever recorded in NSSO-SLLH in the last four decades.
+
+There are considerable regional variations in these trends. Over the last two decades, coastal Andhra Pradesh, Rayalaseema and coastal Orissa have emerged as the areas with highest incidence of tenancy. Tenancy also become more prevalent in Telangana over the last two decades. Punjab and Bihar saw a considerable rise in incidence of tenancy in the last decade, while prevalence of tenancy declined in Haryana and Uttar Pradesh.
+
+The second important point that emerges from the data is the increasing marginalisation of rural poor households from the tenancy markets. Tenancy does not mitigate caste disparities in landownership to any significant extent with dalit and Muslim households facing exclusion in land ownership as well as in accessing land through tenancy.  An increasing share of land is being leased in by large landowners. Even among the landless tenants, there is a growing proportion of large, resource-rich, capitalist tenants.
+
+In many earlier studies based on large-scale data, an increasing participation of large landowners in tenancy market has been taken as a sign of increasing incidence of reverse tenancy. We have argued that this is a flawed measure of existence of reverse tenancy as it disregards the class position of lessors. NSSO-SLLH data do not support the conclusion that reverse tenancy has emerged as a major form of tenancy in any State in India. In fact, the data are consistent with the argument that much of the tenancy in India is either between large landowners and poor tenants, or between landowners and tenants with similar socio-economic status.
+
+The analysis in this paper shows that a greater share of land is being leased on fixed-rent contracts with rent paid in the form of money. This is likely to have been a result of increasing participation of large landowning and resource rich households as tenants. In 2012--13, of the total leased-in land, about 40 per cent was leased on fixed money rent and another 15 per cent on fixed produce rent. An increasing participation of large, resource-rich tenants, often willing to pay fixed cash rent in advance, marginalises poor from the lease market and forces them to accept more onerous terms of contracts.
+
+These findings point at the continued relevance of state regulation of agricultural tenancy in favour of poor tenants. Although tenancy reform legislation have not been effectively implemented except in a few States, a withdrawal of these regulations,  as recommended recently by the Haque Committee, would only work to further marginalise poor tenants.
+
+#+LATEX: \end{multicols}
+
+\newpage
+
+↑** References
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+\chaptermark{References}
+
+#+LATEX: \begin{multicols}{2}
+
+\printbibliography
+
+#+LATEX: \end{multicols}
+
+* Compendium of Statistical Tables on Tenancy \LARGE Based on Corrected Data from the 48^{th}, 59^{th} and 70^{th} Rounds of NSSO Survey of Land and Livestock Holdings
+:PROPERTIES:
+:ALT_TITLE: Compendium of Statistical Tables on Tenancy
+:END:
+
+*** General Notes
+
+Section [[#methodology]] (/pp./ 2--5) provides details of corrections made in the household-level data.
+
+All tables in this compendium refer only to rural households, and land owned and operated by them. In various tables in this compendium households are classified by quintiles and size-classes of ownership and operational holdings.
+
+**** Classification of households across quintiles
+
+  The procedure used for classifying households across quintiles of ownership and operational holdings is as follows.
+
+   First, sample households belonging to each NSS region were separated and given a weighted percentile rank using the size of ownership (or operational) holding of households in each NSS region.
+
+   Then, sample households from all the regions were pooled, and the percentile rank of all landless households was changed to zero, thus moving all landless households to the bottom of the ranking.
+
+  The landowning households were then ordered by their region-specific percentile rank.  Households having the same percentile rank were ordered according to absolute size of ownership holding.  The ranking thus achieved satisfied the following two principles: first, a household with some land anywhere in the country was ranked higher than a household with no land, and secondly, households ranked at n^{th} percentile level in different regions were all next to each other.
+
+  The households were then divided into five equal (weighted) groups to create the quintiles.  Since there was no normative way of ordering landless households, all ranked at the bottom, these were clubbed together in a separate category.
+
+**** Size classes of ownership and operational holdings
+
+   For categorising households by size classes of ownership and operational holding, following size classes have been used.
+
+#+attr_latex: :options [leftmargin=*]
++ 0-1 hectares
++ 1-2 hectares
++ 2-3 hectares
++ 3-4 hectares
++ 4-5 hectares
++ >5 hectares
+
+**** Social groups
+
+ For analysing data across social groups, households were classified into following groups.
+
+#+attr_latex: :options [leftmargin=*]
++ Scheduled Caste households: :: All households belonging to Scheduled Castes, irrespective of their religion, were separated into this category.
++ Scheduled Tribe households: :: All households belonging to Scheduled Tribes, irrespective of their religion, were separated into this category.
++ Muslim households: :: From among all households not classified as Scheduled Caste or Scheduled Tribe, Muslim households were separated into this category. No data on religion was collected in the 48^{th} round of NSSO-SLLH. As a result, no estimates are made separately for Muslim households for the 48^{th} round.
++ Other households: :: All remaining households were classified into this category.
++ Muslim+Other households: :: Since Muslim households cannot be separately identified in the 48^{th} round data, we created this additional category to show comparable estimates from all the three rounds for all households other than Scheduled Castes and Tribes.
+
+*** State-wise Tables
+
+Following 35 Tables are provided for each State.
+
+**** Statistical summery of the sample
+
+Seven tables in this Section give details of the sample. It is important to look at sample size for different categories. Estimates for categories where sample size is very small may not be reliable.
+
+#+attr_latex: :options [leftmargin=*]
++ Table A.1 :: Number of rural households, number of tenant households, leased-in area (ha) and operated area (ha), sample and population estimates
++ Table A.2 :: Number of rural households in the sample, size classes of operated area
++ Table A.3 :: Number of tenant households in the sample, size classes of operated area
++ Table A.4 :: Number of rural households in the sample, quintiles of ownership holding
++ Table A.5 :: Number of tenant households in the sample, quintiles of ownership holding
++ Table A.6 :: Number of rural households in the sample, by social group
++ Table A.7 :: Number of tenant households in the sample, by social group
+
+**** Distribution of ownership and operational holdings
+
+Five tables in this section (Tables A.8--A.12) give data on distribution of ownership and operational holdings across quintiles of ownership and operational holdings, across size-classes of ownership and operational holding, and across social groups.
+
+#+attr_latex: :options [leftmargin=*]
++ Table A.8 :: Distribution of owned land across quintiles of ownership holdings (per cent)
++ Table A.9 :: Distribution of operated area across quintiles of operational holdings (per cent)
++ Table A.10 :: Distribution of rural households and owned land across size-classes of ownership holding
++ Table A.11 :: Distribution of rural households and operated area across size-classes of operational holding
++ Table A.12 :: Distribution of rural households, owned land and operated area across social groups
+**** Overall statistics on tenancy
+
+Table A.13 for each state gives overall statistics on incidence of agricultural tenancy from the three survey rounds.
+
+#+attr_latex: :options [leftmargin=*]
++ Table A.13 :: Tenant households as a proportion of all rural households, tenant households/cultivator households, leased-in area/ total operated area (per cent)
+
+**** Types of contracts
+
+Table A.14 for each State gives the share (in per cent) of leased-in land under different types of contracts.
+
+#+attr_latex: :options [leftmargin=*]
++ Table A.14 :: Distribution of total leased-in area under various terms of lease (per cent)
+
+**** Tenancy across size classes of operational holdings
+
+Tables A.15--A.20 for each State give data on distribution of tenants and leased-in land across size-classes of operational holdings.
+
+#+attr_latex: :options [leftmargin=*]
++ Table A.15 :: Distribution of all households (per cent)
++ Table A.16 :: Distribution of tenant households (per cent)
++ Table A.17 :: Proportion of tenants among all households (per cent)
++ Table A.18 :: Distribution of operated area (per cent)
++ Table A.19 :: Distribution of leased-in area (per cent)
++ Table A.20 :: Proportion of leased-in area in total operated area (per cent)
+
+**** Tenancy across quintiles of ownership holding
+
+Tables A.21--A.24 for each State give data on distribution of tenants and leased-in land across quintiles of ownership holdings.
+
+#+attr_latex: :options [leftmargin=*]
++ Table A.21 :: Distribution of tenant households (per cent)
++ Table A.22 :: Distribution of area leased-in (per cent)
++ Table A.23 :: Proportion of tenants among all rural households (per cent)
++ Table A.24 :: Average area of land leased-in by tenant households (hectares)
+
+**** Tenancy across social groups
+
+Tables A.25--A.30 for each State give data on distribution of tenants and leased-in land across social groups.
+
+#+attr_latex: :options [leftmargin=*]
++ Table A.25 :: Distribution of all rural households (per cent)
++ Table A.26 :: Distribution of tenant households (per cent)
++ Table A.27 :: Proportion of tenants among all rural households (per cent)
++ Table A.28 :: Distribution of total operated area (per cent)
++ Table A.29 :: Distribution of leased-in area (per cent)
++ Table A.30 :: Proportion of leased-in land in total operated area (per cent)
+
+**** Landlessness across social groups
+
+Table A.31 for each State gives statistics on landlessness among households belonging to different social groups.
+
+#+attr_latex: :options [leftmargin=*]
++ Table A.31 :: Proportion of households with no ownership holding and no operational holding across social groups
+
+**** Tenants among households with no ownership holding (landless tenants)
+
+Tables A.32--A.35 give statistics on tenant households that do not have any ownership holding.
+
+#+attr_latex: :options [leftmargin=*]
++ Table A.32 :: Number of landless tenants in sample, landless tenants/all households, landless tenants/all tenants, leased-in area by landless tenants as proportion of total operated area and total leased-in area, 1991--92, 2002--03 and 2012--13
++ Table A.33 :: Distribution of landless tenants and area leased-in across quintiles of operated area, 1991--92, 2002--03 and 2012--13
++ Table A.34 :: Proportion of tenants among households with no ownership holding, by social groups (per cent)
++ Table A.35 :: Average leased-in area by tenants with no ownership holdings, by social groups (hectares)
+
+*** Regional Tables
+
+For selected States, where number of observations at the level of NSS regions was substantial, Tables B.1--B.6 are provided separately for each region. These tables have been prepared for different regions of Punjab, Haryana, Rajasthan, Uttar Pradesh, Bihar, Assam, West Bengal, Orissa, Madhya Pradesh, Gujarat, Maharashtra, Andhra Pradesh, Karnataka and Tamil Nadu.
+
+#+attr_latex: :options [leftmargin=*]
++ Table B.1 :: Number of rural households, tenant households, leased-in area and operated area, sample and population estimates
++ Table B.2 :: Distribution of ownership holdings across quintiles of ownership holdings (per cent)
++ Table B.3 :: Distribution of operational holding across quintiles of operational holdings (per cent)
++ Table B.4 :: Distribution of rural households, owned land and operated area across social groups
++ Table B.5 :: Tenant households as a proportion of all rural and cultivator households, and leased-in area as a proportion of total operated area (per cent)
++ Table B.6 :: Distribution of total leased-in area under various term of lease (per cent)
+#+LATEX: \end{multicols}
+
+#+LATEX: \begin{SingleSpace}
+
+#+LATEX: \setlength\columnsep{5pt}
+
+#+INCLUDE: compendium1.org :minlevel 2
+#+INCLUDE: compendium2.org :minlevel 2
+#+INCLUDE: compendium3.org :minlevel 2
+#+INCLUDE: compendium4.org :minlevel 2
+
+#+LATEX: \end{SingleSpace}
+
+\cleartorecto
+
+\thispagestyle{empty}
+\pagenumbering{gobble}
+\mbox{}
+
+\newpage
+\thispagestyle{empty}
+\pagenumbering{gobble}
+\mbox{}
+
+\newpage
+\thispagestyle{empty}
+\pagenumbering{gobble}
+\mbox{}
+
+\newpage
+\includepdf[noautoscale]{backcover.pdf}
+\thispagestyle{empty}
+\pagenumbering{gobble}
+* back cover page                                                  :noexport:
+\thispagestyle{empty}
+\pagenumbering{gobble}
+
+\noindent Over the last three decades, the Indian state has become increasingly hostile to the prospect of using land reforms as a tool for bringing about progressive agrarian change. Under a neoliberal regime, the focus of state policy has shifted to undoing even the legislative framework of land reforms. In absence of thorough agrarian reforms, the Indian countryside has seen an uneven and distorted penetration of capitalist relations. Over this period, there have been significant changes in the extent of use of tenancy, in the class configuration of tenants and lessors, and in the form of tenancy contracts.
+
+\vspace{10pt}
+
+\noindent In this context, *Agricultural Tenancy in Contemporary India* attempts to answer the following questions using detailed data from three rounds of NSSO Surveys of Land and Livestock Holdings.
+
+\vspace{10pt}
+
+\setlength\itemsep{1em}
++ How widespread is agricultural tenancy in contemporary India?
++ Has tenancy become less or more prevalent over time?
++ How widespread is tenancy in different States and regions of India?
++ Who leases land and from whom?
++ How have tenancy contracts changed over the years?
+
+\noindent The report presents a careful assessment of the NSSO Surveys of Land and Livestock Holdings. It provides a comprehensive analysis of trends and regional variations in incidence of agricultural tenancy over the last two decades. The data were examined carefully to identify the class and caste position of tenants in different parts of India, and throw light on the changes in the relative importance of different types of tenancy contracts. The volume also includes a detailed compendium of statistical tables on land and tenancy relations in twenty most populous States of India.
+
+\vspace*{50pt}
+
+\noindent *Vaishali Bansal* ([[mailto:vaishali@sser.in][vaishalibansal02@gmail.com]]) and *Vikas Rawal*  ([[mailto:vikasrawal@gmail.com][vikasrawal@gmail.com]]) are with the Centre for Economic Studies and Planning, Jawaharlal Nehru University, New Delhi.
+
+\vspace*{5pt}
+
+\noindent *Yoshifumi Usami* ([[mailto:yoshiusami@gmail.com][yoshiusami@gmail.com]]) is with the University of Tokyo, Tokyo.
+
+\vspace*{50pt}
+
+\noindent  \textbf{Key words}
+
+\vspace*{5pt}
+
+\noindent land, tenancy, land distribution, land market, agrarian relations, India
+
+\vspace*{10pt}
+\noindent  \textbf{Recommended citation}
+
+\vspace*{5pt}
+\noindent Bansal, Vaishali, Usami, Yoshifumi, and Rawal, Vikas (2018), /Agricultural Tenancy in India: An Analytical Report and a Compendium of Statistical Tables based on NSSO Surveys of Land and Livestock Holdings/, SSER Monograph 18/1, Society for Social and Economic Research, New Delhi (available at: http://archive.indianstatistics.org/sserwp/sserwp1801.pdf).
+
+\vfill
+
+\begin{flushright}
+\colorbox{white}{\EANisbn[SC4]}
+\end{flushright}
+
+\hrule
+\vspace*{10pt}
+\noindent The Society for Social and Economic Research (SSER) is a charitable trust based in New Delhi, India. SSER undertakes research on a wide range of issues related to social and economic development. These include issues related to food security and nutrition, agricultural development and rural livelihoods, industrial development, employment and labour relations, discrimination and exclusion, and living conditions in rural and urban areas.
+
+* Footnotes
+
+[fn:1] Block 14 of the schedule for the second visit, titled "particulars of plots constituting the operational holding no. _ for agricultural year 1991--92 (possessed for major part of the agricultural year 91-92), if joint, no. of partner households _", included "all the plots, or parts of plots, coming under the purview of the holding and possessed by operating household(s) for the major part of the agricultural year" citep:nsso1991manual.
+
+[fn:2] Agricultural production includes growing of field crops (including fodder crops), fruits, grapes, nuts, seeds, seedlings in the nurseries, bulbs, vegetables, flowers, production of plantation crops, production on forest lands, and production of livestock and livestock products, poultry and poultry products, fish, honey, rabbits, fur-bearing animals and silk-worm cocoons  citep:nss70manual.
+
+[fn:3] There are no clear guidelines on how this retabulation is done. The task is done at the State-level, with little supervision to ensure uniformity. Land records have information on individual ownership. Although operational holdings in agricultural censuses refer to land operated as a single technical unit, it is not clear how land operated by households but registered under names of various members of households (and other family members) are identified and aggregated to obtain operational holdings. Even identification of all plots of land belonging to an individual correctly is likely to be an extremely cumbersome, if not impossible, task. Land records are often outdated and do not reflect the correct status of ownership and possession. They are also, in most States, very poorly maintained citep:prslandrecords. Given lack of transparency in the method of doing these computations, information on land distribution from the agricultural censuses is not accurate and not usable. In most States, computerisation of land records is an ongoing task. For the purpose of the 2015-16 Agricultural Census, an unsuccessful attempt was made to use computerised land records database in Gujarat and Maharashtra. However, the effort was abandoned because of inadequacy of information available in the database and other teething problems (http://agcensus.nic.in/egov.html).
+
+[fn:4] http://agcensus.dacnet.nic.in
+
+[fn:5] West Bengal, where registration of a substantial proportion of tenants in land records was achieved through Operation Barga in the late 1970s and early 1980s, is the only noteworthy exception on this account.
+
+[fn:6] The classification of regions for Uttar Pradesh used by NSSO in the 59^{th} and 70^{th}  does not coincide with agro-climatic regions of the State. Because of this, we used the information on district of sample households from UP to reclassify them into regions matching the State's agro-climatic regions.
+
+[fn:7] For the purpose of this analysis, ownership holdings were defined to include all land that is owned or otherwise occupied (a category that mostly include cases of ownership-like possession but without legal title).
+
+[fn:8] It should be noted that, in this ordering, a household x may be ranked higher than a household y despite having less land than y if x has a higher percentile rank in its region than y's percentile rank in the region in which y is located.
+
+[fn:9] The measure does not account for the fact that, as per the NSS data, proportion of marginal and small landowner households and share of total land owned by these households also increased over the same period. Also, since the share of marginal and small landowner households in land leased in remained much greater than the share of these classes in land leased out, the indicator does not necessarily imply an increase in leasing of land by small landowners to large land owners.
+
+[fn:10] Having analysed earlier rounds of NSSO-SLLH surveys, citet:hrsharma1995 and citet:hrsharma2009 also noted lack of a conclusive evidence about an increase in incidence of reverse tenancy. citet:hrsharma2009 concluded that, "in most of the states, households with not very different farm size dominated the lease market both as lessees and lessors".
+
+[fn:11] http://secc.gov.in/statewiseLandOwnershipReport?reportType=Land%20Ownership
+
+[fn:13] For the sake of comparability across the three rounds,
+undivided Bihar has been reconstructed for the 48th round and divided into Jharkhand
+and Bihar using the NSS state region codes.
+
+[fn:12] Since Telangana was a part of Andhra Pradesh until the 70^{th}
+round survey, in our study we have separated Telangana from Andhra
+Pradesh in the 48^th and 59^th round using the NSS state region codes.
+
+
